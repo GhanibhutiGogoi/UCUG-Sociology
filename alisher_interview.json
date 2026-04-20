@@ -1,0 +1,117 @@
+{
+  "title": "Cleaned Interview Transcript",
+  "participant": {
+    "name": "King Wilson",
+    "label_in_document": "Alisher (international student)",
+    "participant_type": "International Student"
+  },
+  "study": "Social Integration and Academic Divergence at HKUST(GZ)",
+  "status": "Cleaned and organized from a dirty transcript using the international-student interview structure.",
+  "editing_approach": "Grammar, repetition, and unclear phrasing were corrected while preserving the speaker’s original meaning.",
+  "caution": "Where wording in the raw transcript was unclear, the phrasing was normalized conservatively rather than invented.",
+  "sections": {
+    "background_and_first_impressions": [
+      {
+        "question": "Could you briefly introduce yourself — your nationality, program, year of study, and how long have you been at HKUST(GZ)?",
+        "answer": "My name is King Wilson. I am a first-year student. I am currently in my second semester at HKUST(GZ)."
+      },
+      {
+        "question": "What was your first impression of student life at HKUST(GZ), especially socially?",
+        "answer": "During the first few weeks — or even the first month — student life felt very exciting. I saw many clubs, opportunities, and new people. But once exams came, I realized the reality of college life: you have to balance social life with studies. So my first impression was very positive, but later it became more balanced and realistic."
+      }
+    ],
+    "social_integration_and_belonging": [
+      {
+        "question": "How easy or difficult was it for you to make friends when you first arrived? Why?",
+        "answer": "For me, it was not very difficult. I am the kind of person who can make friends quite easily because I have many interests and I am comfortable starting conversations first. So when I arrived, I was able to make many friends."
+      },
+      {
+        "question": "Do you feel that you belong socially at HKUST(GZ)? Why or why not?",
+        "answer": "In general, I do not feel that I fully belong socially here. Many clubs and activities are held in Chinese. Sometimes even when an event is advertised in English, the actual event turns out to be conducted mostly in Chinese. Because of that, I often feel separated from the social life on campus."
+      },
+      {
+        "question": "Who do you mostly spend time with on campus — students from your own background, Chinese students, or a mix? What shaped that pattern?",
+        "answer": "Mostly I spend time with friends from Central Asia. At the same time, when I play basketball or study somewhere on campus, I also spend time with Chinese friends or friends from Hong Kong. I made some of those friendships during my first month here. So overall, it is mostly people from my own background, but not only them."
+      },
+      {
+        "question": "Have you ever felt left out, disconnected, or excluded in social situations on campus? Can you describe a specific example?",
+        "answer": "Yes. One strong example was the Robotics Club. I have a strong background in robotics and participated in many competitions before, so I was very excited when I saw the invitation. But when I went there, the seniors were speaking only Chinese, joking among themselves, and not really including me. It gave me the feeling that this was not my place. That was one of the clearest examples of feeling excluded in my social experience here."
+      }
+    ],
+    "interaction_with_chinese_students": [
+      {
+        "question": "How would you describe your interactions with Chinese students at HKUST(GZ)?",
+        "answer": "Overall, my interactions with Chinese students are positive. I have some friends I can talk to or play sports with, such as basketball or table tennis. But I am not very close to them. We do not usually have deep conversations or a strong personal connection."
+      },
+      {
+        "question": "What makes it easier to connect with Chinese students, and what makes it harder?",
+        "answer": "It is easier when they are outgoing and willing to start conversations. What makes it harder is when there is no initiative from their side — when they do not really try to speak or connect."
+      },
+      {
+        "question": "To what extent do language differences affect your social relationships here?",
+        "answer": "I do not think language differences are the main issue in my social relationships here, because English is supposed to be the main language in this environment. I can speak English well, and during my first semester I also learned some basic Chinese. So I do not think language itself is the biggest barrier. For me, it is more about whether people choose to communicate in English or not."
+      },
+      {
+        "question": "To what extent do cultural differences affect your comfort, confidence, or communication with others?",
+        "answer": "I do not think cultural differences create major problems for my comfort or confidence. If anything, sometimes they can even help by making interactions more interesting. The difference I notice more is in social behavior. For example, my impression is that some Chinese students may have had less experience with open social interaction in school compared with what I experienced in high school."
+      },
+      {
+        "question": "Do you think students at HKUST(GZ) mix naturally across backgrounds, or do they mostly stay in separate groups? Why?",
+        "answer": "I think students mostly stay in separate groups, especially international students. Logically, we stay with each other because we understand each other’s languages, situations, and problems. That shared experience makes it easier to connect."
+      }
+    ],
+    "academic_experience": [
+      {
+        "question": "Do you think your social experience at university has affected your academic life? How?",
+        "answer": "I do not think my social experience has had much effect on my academic life. In my mind, there is a boundary between social life and academics. I do not really connect my friendships here with my grades or academic performance."
+      },
+      {
+        "question": "Has your ability or inability to build friendships influenced your motivation, confidence, or study habits?",
+        "answer": "I can build friendships quite easily if the other person is open to it, but I do not think this has a strong effect on my motivation, confidence, or study habits. For me, it feels like a normal part of life rather than something that directly shapes my academics."
+      },
+      {
+        "question": "How has your social experience affected your access to study groups, academic help, or useful information?",
+        "answer": "In some ways it has helped. I know people in places such as the admissions office or the RC office, and sometimes they share information or opportunities with me in English that might otherwise only appear in Chinese or be less visible to me. So social connections can improve access to useful information."
+      },
+      {
+        "question": "In group projects or collaborative assignments, have social or cultural dynamics affected your experience? Can you give an example?",
+        "answer": "To be honest, in speaking-based courses I usually chose to work with my friends, often people from my own country. So I did not really face much cultural tension in group work. For example, in biology I worked with my friend Ramazan, who is also from Kazakhstan. Since we are roommates, we could just meet in the room and practice our presentation together."
+      },
+      {
+        "question": "Have you ever felt academically disadvantaged because you were not well connected socially? Why or why not?",
+        "answer": "No, I have not really felt academically disadvantaged because of that. I see social life and academic life as two different things. In some ways, if I am less involved socially, I can spend more time on myself, my studies, or my hobbies."
+      },
+      {
+        "question": "Do you think students with stronger social networks generally perform better academically here? What makes you say that?",
+        "answer": "I think it depends on the course. In UCUG-style courses, social skills can help because students need to participate, answer questions, and stand out during lectures or group projects. In UFUG-style courses, being very outgoing or socially strong gives less of an advantage, because those courses are more exam-focused."
+      },
+      {
+        "question": "Have you noticed any difference in your performance between UCUG and UFUG courses? What do you think explains that difference?",
+        "answer": "I noticed a pattern: many Chinese students seem to perform very well in UFUG courses and somewhat worse in UCUG courses, while international students often show the opposite pattern. I think one explanation is preparation. Chinese students may come from high school systems that prepared them more for subjects like physics or calculus and for the discipline needed in exam-oriented courses. By contrast, in my high school experience there was more social life, more activities, and more programs, which may help more in UCUG-style environments."
+      },
+      {
+        "question": "Do factors like language, class participation, or social connections affect your grades in UCUG and UFUG courses differently? How?",
+        "answer": "Yes. Even in the syllabi, you can see that UCUG courses often require participation, answering questions, taking initiative, and speaking in class. In UFUG courses, class participation may matter much less, and sometimes students do not even need to engage much during the lecture. So these factors affect performance differently across the two course types."
+      }
+    ],
+    "institutional_factors_and_recommendations": [
+      {
+        "question": "What do you think are the main barriers preventing stronger integration between international and Chinese students at HKUST(GZ)?",
+        "answer": "I think one of the main barriers is willingness. From the international-student side, I personally do not mind talking to or becoming friends with Chinese students. But it cannot be one-sided. Real connection needs initiative from both sides."
+      },
+      {
+        "question": "Do you think the university does enough to help international students integrate socially and academically? Why or why not?",
+        "answer": "I do not think the university does enough. Even if some effort exists, I do not see it making much real difference. Many posters are still in Chinese. Many emails are also mainly in Chinese, or the English part comes only at the end. Sometimes even the subject line is in Chinese, so international students have to guess whether the message is important. Because of that, I do not feel the support is sufficient."
+      },
+      {
+        "question": "What changes would you recommend to improve social integration and academic support for international students?",
+        "answer": "One idea would be to identify a very active international student who genuinely wants to improve the situation and let that person act as a representative or leader. International students could share their problems and experiences with that person, and then the representative could communicate those issues directly to the university. That would probably be more effective than individual emails, which can easily be ignored."
+      },
+      {
+        "question": "Is there anything about the international student experience at HKUST(GZ) that people usually overlook or misunderstand?",
+        "answer": "Yes. On social media or in official pages such as Instagram or WeChat, international student life may be presented as very bright and exciting. But in reality, many international students face real problems and difficult experiences, especially in social life. That side is often overlooked."
+      }
+    ]
+  },
+  "note": "This cleaned transcript was organized according to the international-student interview protocol and preserves the participant’s meaning while removing transcript noise and broken phrasing."
+}
