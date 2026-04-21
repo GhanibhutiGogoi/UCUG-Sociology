@@ -1,0 +1,135 @@
+{
+  "interview_id": "international_05",
+  "group": "international",
+  "respondent_label": "Respondent 5",
+  "metadata": {
+    "raw_background": "I’m a international student from Macao, now a year 2 preparing to studying Smart manufactoring, I have been in HKUST(GZ) for 2 years"
+  },
+  "responses": [
+    {
+      "question_number": 1,
+      "question": "Could you briefly introduce yourself — your nationality, program, year of study, and how long you have been at HKUST(GZ)?",
+      "answer": "I’m a international student from Macao, now a year 2 preparing to studying Smart manufactoring, I have been in HKUST(GZ) for 2 years"
+    },
+    {
+      "question_number": 2,
+      "question": "What was your first impression of student life at HKUST(GZ), especially socially?",
+      "answer": "Life is very good here, with a one-person bedroom, and dorm. I can make more friends which have the same hobby with me."
+    },
+    {
+      "question_number": 3,
+      "question": "How easy or difficult was it for you to make friends when you first arrived? Why?",
+      "answer": "Very easy, because the campus is small, and people will go around, so its very easy to make friend. (also with imt and clubs)"
+    },
+    {
+      "question_number": 4,
+      "question": "Do you feel that you belong socially at HKUST(GZ)? Why or why not?",
+      "answer": "Yeah, I think I do"
+    },
+    {
+      "question_number": 5,
+      "question": "Who do you mostly spend time with on campus — students from your own background, Chinese students, or a mix? What shaped that pattern?",
+      "answer": "Both, if they match my hobbies, and happy and willing to communicate with."
+    },
+    {
+      "question_number": 6,
+      "question": "Have you ever felt left out, disconnected, or excluded in social situations on campus? Can you describe a specific example?",
+      "answer": "Sometimes, espically in academic life."
+    },
+    {
+      "question_number": 7,
+      "question": "How would you describe your interactions with Chinese students at HKUST(GZ)?",
+      "answer": "A selection, I can go well with some of them"
+    },
+    {
+      "question_number": 8,
+      "question": "What makes it easier to connect with Chinese students, and what makes it harder?",
+      "answer": "Maybe hobbies and sports, but the hard part is talking about academic life and some beliefs"
+    },
+    {
+      "question_number": 9,
+      "question": "To what extent do language differences affect your social relationships here?",
+      "answer": "Nope, my chinese is good, so no language difference"
+    },
+    {
+      "question_number": 10,
+      "question": "To what extent do cultural differences affect your comfort, confidence, or communication with others?",
+      "answer": "It doesn’t affect as well, because different regions will have their own cultures, so not a big deal for me"
+    },
+    {
+      "question_number": 11,
+      "question": "Do you think students at HKUST(GZ) mix naturally across backgrounds, or do they mostly stay in separate groups? Why?",
+      "answer": "In my opinion I do think they tend to stay in their own separate groups"
+    },
+    {
+      "question_number": 12,
+      "question": "Do you think your social experience at university has affected your academic life? How?",
+      "answer": "No, I think they are two different circustance"
+    },
+    {
+      "question_number": 13,
+      "question": "Has your ability or inability to build friendships influenced your motivation, confidence, or study habits?",
+      "answer": "No, I tend to study myself, so it did not help my study alot"
+    },
+    {
+      "question_number": 14,
+      "question": "How has your social experience affected your access to study groups, academic help, or useful information?",
+      "answer": "I tend to from groups with people whom I know well"
+    },
+    {
+      "question_number": 15,
+      "question": "In group projects or collaborative assignments, have social or cultural dynamics affected your experience? Can you give an example?",
+      "answer": "Maybe sometimes, the way of communication is different, I prefer online meetings but most of them like to do it offline."
+    },
+    {
+      "question_number": 16,
+      "question": "Have you ever felt academically disadvantaged because you were not well connected socially? Why or why not?",
+      "answer": "No, but maybe sometimes you will miss some information because you didn’t join the communication"
+    },
+    {
+      "question_number": 17,
+      "question": "Do you think students with stronger social networks generally perform better academically here? What makes you say that?",
+      "answer": "There is not a relationship between these two."
+    },
+    {
+      "question_number": 18,
+      "question": "Have you noticed any difference in your performance between UCUG and UFUG courses? What do you think explains that difference?",
+      "answer": "No I did not find big difference between these two"
+    },
+    {
+      "question_number": 19,
+      "question": "Do factors like language, class participation, or social connections affect your grades in UCUG and UFUG courses differently? How?",
+      "answer": "UFUG may care more about participation and groupwork, while UCUG work more on grades and academic."
+    },
+    {
+      "question_number": 20,
+      "question": "What do you think are the main barriers preventing stronger integration between international and Chinese students at HKUST(GZ)?",
+      "answer": "Hobbies and the way of life and thinking"
+    },
+    {
+      "question_number": 21,
+      "question": "Do you think the university does enough to help international students integrate socially and academically? Why or why not?",
+      "answer": "Yes, extra workshops and some clubs, but not much in academic life."
+    },
+    {
+      "question_number": 22,
+      "question": "What changes would you recommend to improve social integration and academic support for international students?",
+      "answer": "More communication and experience shared"
+    },
+    {
+      "question_number": 23,
+      "question": "Is there anything about the international student experience at HKUST(GZ) that people usually overlook or misunderstand?",
+      "answer": "Weak academic foundation, need to work hard to keep on, and different way of thinking."
+    }
+  ],
+  "summary_bullets": [
+    "International student from Macao in Year 2, preparing for Smart Manufacturing, with two years at HKUST(GZ).",
+    "Found it very easy to make friends because the campus is small and clubs create contact.",
+    "Feels a sense of social belonging and spends time with both Chinese and international students who share hobbies.",
+    "Says hobbies and sports help connection, while academic life and beliefs make deeper conversation harder.",
+    "Does not see language or culture as major personal barriers, but thinks students still remain in separate groups.",
+    "Separates social life and academic life, though weak communication can mean missing information.",
+    "Does not see a strong relationship between social networks and academic performance.",
+    "Thinks UFUG emphasizes participation and group work more, while UCUG focuses more on grades and academics."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "interview_id": "mainland_04",
+  "group": "mainland",
+  "respondent_label": "Respondent 4",
+  "metadata": {
+    "raw_background": "大一，AI学科，在校一年"
+  },
+  "responses": [
+    {
+      "question_number": 1,
+      "question": "Could you briefly introduce yourself — your program, year of study, and how long you have been at HKUST(GZ)?",
+      "answer": "大一，AI学科，在校一年"
+    },
+    {
+      "question_number": 2,
+      "question": "How would you describe the general social environment at HKUST(GZ)?",
+      "answer": "社交环境比较自由，交流很多"
+    },
+    {
+      "question_number": 3,
+      "question": "How would you describe your interactions with international students at HKUST(GZ)?",
+      "answer": "几乎很少交流"
+    },
+    {
+      "question_number": 4,
+      "question": "Do you think it is easy or difficult for Chinese and international students to become friends here? Why?",
+      "answer": "感觉跟大陆学生交友差别不会很大，如果有交流的契机还是很有可能成为朋友的"
+    },
+    {
+      "question_number": 5,
+      "question": "In your experience, do Chinese and international students mix naturally, or do they mostly stay in separate circles? Why?",
+      "answer": "分别交流的情况较多，可能因为大家还是更习惯用母语交流"
+    },
+    {
+      "question_number": 6,
+      "question": "What factors make interaction between Chinese and international students easier?",
+      "answer": "共同话题爱好，比如打球唱歌等等"
+    },
+    {
+      "question_number": 7,
+      "question": "What factors make interaction harder?",
+      "answer": "我认为最主要还是语言的障碍，其次是文化的一些差异"
+    },
+    {
+      "question_number": 8,
+      "question": "To what extent do language or cultural differences affect communication between Chinese and international students?",
+      "answer": "确实对交流有影响，但是感觉并不是决定性因素，如果有共同话题的话还是很容易交流的。语言和文化差异是表层的屏障，但并不会隔绝交友"
+    },
+    {
+      "question_number": 9,
+      "question": "In your opinion, does social integration affect international students’ academic experiences? How?",
+      "answer": "更多的促进了国际学生来到中国大陆留学，也给我们带来一些了解多元文化的契机"
+    },
+    {
+      "question_number": 10,
+      "question": "Have you noticed any difference in your academic performance between UCUG and UFUG courses? Why?",
+      "answer": "UFUG更多注重对知识的掌握，而UCUG更多强调小组合作讨论，语言表达等"
+    },
+    {
+      "question_number": 11,
+      "question": "From what you have observed, do international students seem to perform differently in UCUG and UFUG courses? Why?",
+      "answer": "不太了解，没有跟国际生一起上过UCUG"
+    },
+    {
+      "question_number": 12,
+      "question": "Do you think international students sometimes face disadvantages in group work, class participation, or access to academic support because of weaker social connections? Why or why not?",
+      "answer": "不了解，但感觉他们应该会跟其他国际生一起组队"
+    },
+    {
+      "question_number": 13,
+      "question": "Have you noticed any differences in how Chinese and international students participate in group projects, study groups, or classroom interaction?",
+      "answer": "应该区别不大吧"
+    },
+    {
+      "question_number": 14,
+      "question": "Do you think students with stronger social networks generally perform better academically at HKUST(GZ)? Why?",
+      "answer": "并不一定，更多还是学习能力与钻研能力决定了学术表现"
+    },
+    {
+      "question_number": 15,
+      "question": "What do you think are the biggest barriers preventing stronger integration between Chinese and international students?",
+      "answer": "语言和文化"
+    },
+    {
+      "question_number": 16,
+      "question": "Do you think the university does enough to encourage interaction and inclusion between different student groups? Why or why not?",
+      "answer": "学校更多的是一个顺其自然的处理方式，并没有采取一些强制措施，我觉得这样更合理，自然而然地交流交友更符合常理"
+    },
+    {
+      "question_number": 17,
+      "question": "Are there any university practices, campus habits, or classroom dynamics that unintentionally make integration harder?",
+      "answer": "我认为并没有"
+    },
+    {
+      "question_number": 18,
+      "question": "What do you think HKUST(GZ) could do better to improve integration between Chinese and international students?",
+      "answer": "举办更多的活动邀请大家来参加，有更多的社交机会"
+    },
+    {
+      "question_number": 19,
+      "question": "Is there anything about this issue that people often misunderstand or fail to notice?",
+      "answer": "无"
+    }
+  ],
+  "summary_bullets": [
+    "First-year AI student who has been at the university for one year.",
+    "Describes the social environment as free, but says interaction with international students is still limited.",
+    "Believes friendships are possible when people have opportunities to interact.",
+    "Attributes separate circles mainly to mother-tongue communication, plus language and cultural differences.",
+    "Notes that UFUG emphasizes knowledge mastery while UCUG emphasizes discussion and expression.",
+    "Does not think social networks necessarily determine academic performance.",
+    "Views the university’s natural, non-forced approach to integration as reasonable.",
+    "Recommends more activities and more social opportunities."
+  ]
+}

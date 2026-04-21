@@ -1,0 +1,14 @@
+question_id,question_text,mean_1to5,sd,agree_plus_pct,agree_ci_lo,agree_ci_hi
+belong,I feel that I belong at HKUST(GZ).,3.491,0.92,0.491,0.366,0.617
+class_confidence,I feel confident participating in class discussions.,3.579,0.857,0.579,0.45,0.698
+comfort_init,I feel comfortable initiating conversations with students from a different cultural background.,3.561,0.879,0.526,0.399,0.65
+confident_succeed,I feel confident in my ability to succeed academically at HKUST(GZ).,3.421,0.917,0.561,0.433,0.682
+excluded_study_group,"I have been excluded from, or had difficulty joining, a study group due to language or cultural differences.",2.368,1.037,0.193,0.111,0.313
+interact_chinese,I regularly interact with local Chinese students outside of class.,3.702,1.059,0.632,0.502,0.745
+language_hard,Language differences make it difficult for me to form meaningful friendships here.,2.807,1.146,0.298,0.195,0.427
+meaningful_friendships,I have meaningful friendships with students from different backgrounds.,3.474,0.975,0.561,0.433,0.682
+social_grades,Social difficulties on campus have negatively affected my actual grades.,2.404,0.934,0.158,0.085,0.274
+social_motivation,Social difficulties on campus have negatively affected my motivation to study.,2.439,0.974,0.158,0.085,0.274
+stay_in_groups,Students at HKUST(GZ) tend to stay within their own cultural or national groups.,3.772,0.622,0.702,0.573,0.805
+uni_enough,The university does enough to help international students integrate and succeed.,3.088,0.884,0.298,0.195,0.427
+valued_in_groups,"When working on group projects, I feel my contributions are valued equally.",3.596,1.006,0.579,0.45,0.698

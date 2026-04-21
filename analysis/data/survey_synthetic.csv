@@ -1,0 +1,58 @@
+status,gender,level,year,gpa,social_circle,belong,meaningful_friendships,interact_chinese,comfort_init,language_hard,stay_in_groups,class_confidence,valued_in_groups,excluded_study_group,confident_succeed,social_motivation,social_grades,aware_services,uni_enough
+Domestic Chinese student,Male,Undergraduate,Year 1,Above 3.7,3-5,Disagree,Agree,Strongly agree,Neutral,Neutral,Agree,Disagree,Agree,Strongly disagree,Disagree,Disagree,Strongly disagree,Somewhat,Neutral
+Domestic Chinese student,Female,Undergraduate,Year 2,3.3-3.7,6-10,Disagree,Agree,Agree,Agree,Agree,Agree,Agree,Agree,Strongly disagree,Agree,Disagree,Disagree,No,Agree
+International student,Male,Undergraduate,Year 1,3.3-3.7,3-5,Strongly agree,Neutral,Agree,Agree,Neutral,Neutral,Strongly agree,Agree,Neutral,Neutral,Disagree,Strongly disagree,Somewhat,Neutral
+Domestic Chinese student,Female,Undergraduate,Year 2,3.3-3.7,More than 10,Agree,Agree,Strongly disagree,Neutral,Agree,Agree,Agree,Strongly agree,Strongly disagree,Agree,Disagree,Strongly disagree,No,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 1,2.7-3.0,6-10,Neutral,Neutral,Agree,Neutral,Strongly agree,Disagree,Agree,Strongly agree,Disagree,Disagree,Disagree,Disagree,No,Agree
+International student,Male,Undergraduate,Year 3,3.3-3.7,3-5,Neutral,Neutral,Agree,Agree,Agree,Neutral,Neutral,Neutral,Disagree,Agree,Agree,Disagree,Somewhat,Neutral
+International student,Female,Undergraduate,Year 1,3.3-3.7,More than 10,Agree,Strongly agree,Neutral,Agree,Strongly disagree,Agree,Neutral,Neutral,Disagree,Agree,Strongly agree,Disagree,Yes,Neutral
+Domestic Chinese student,Female,Undergraduate,Year 2,Above 3.7,3-5,Agree,Strongly agree,Strongly disagree,Neutral,Strongly disagree,Agree,Disagree,Disagree,Agree,Neutral,Neutral,Neutral,Yes,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 3,3.3-3.7,0,Agree,Strongly disagree,Agree,Neutral,Disagree,Agree,Strongly agree,Neutral,Disagree,Neutral,Strongly disagree,Agree,Somewhat,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 1,3.3-3.7,6-10,Agree,Neutral,Neutral,Agree,Strongly agree,Agree,Agree,Neutral,Strongly disagree,Neutral,Disagree,Neutral,Yes,Strongly agree
+Domestic Chinese student,Female,Undergraduate,Year 1,3.3-3.7,1-2,Neutral,Agree,Neutral,Strongly agree,Neutral,Agree,Strongly agree,Agree,Neutral,Agree,Disagree,Agree,Somewhat,Neutral
+Domestic Chinese student,Female,PhD,Year 1,2.7-3.0,More than 10,Disagree,Neutral,Strongly agree,Agree,Disagree,Neutral,Agree,Agree,Disagree,Neutral,Disagree,Disagree,Somewhat,Agree
+Domestic Chinese student,Male,Undergraduate,Year 3,2.7-3.0,3-5,Neutral,Agree,Strongly agree,Strongly agree,Agree,Agree,Neutral,Agree,Disagree,Strongly disagree,Agree,Neutral,Somewhat,Agree
+Domestic Chinese student,Male,Undergraduate,Year 2,3.3-3.7,3-5,Agree,Neutral,Agree,Neutral,Disagree,Agree,Neutral,Strongly agree,Agree,Agree,Disagree,Disagree,Somewhat,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 1,3.3-3.7,6-10,Agree,Agree,Neutral,Neutral,Disagree,Neutral,Strongly agree,Strongly agree,Agree,Agree,Neutral,Neutral,Somewhat,Disagree
+Domestic Chinese student,Female,Undergraduate,Year 1,2.7-3.0,More than 10,Strongly agree,Agree,Neutral,Neutral,Neutral,Agree,Disagree,Neutral,Disagree,Agree,Disagree,Disagree,Somewhat,Agree
+International student,Prefer not to say,Undergraduate,Year 2,Below 2.3,6-10,Neutral,Agree,Strongly agree,Strongly agree,Neutral,Agree,Agree,Strongly agree,Strongly disagree,Strongly agree,Disagree,Disagree,Somewhat,Neutral
+Domestic Chinese student,Female,Undergraduate,Year 2,Above 3.7,More than 10,Agree,Agree,Neutral,Neutral,Strongly agree,Agree,Agree,Agree,Disagree,Disagree,Strongly disagree,Disagree,Somewhat,Disagree
+Domestic Chinese student,Male,Undergraduate,Year 1,2.7-3.0,3-5,Neutral,Neutral,Agree,Neutral,Disagree,Agree,Disagree,Strongly agree,Disagree,Agree,Disagree,Disagree,Somewhat,Neutral
+"Hong Kong, Macau, or Taiwan student",Male,PhD,Year 3,3.3-3.7,3-5,Neutral,Strongly agree,Neutral,Agree,Agree,Agree,Agree,Neutral,Disagree,Disagree,Neutral,Disagree,Somewhat,Disagree
+Domestic Chinese student,Female,Undergraduate,Year 1,3.3-3.7,6-10,Strongly agree,Agree,Agree,Strongly agree,Disagree,Neutral,Agree,Neutral,Strongly agree,Agree,Disagree,Strongly agree,Somewhat,Neutral
+Domestic Chinese student,Female,Undergraduate,Year 3,3.3-3.7,1-2,Neutral,Disagree,Agree,Agree,Disagree,Agree,Agree,Disagree,Disagree,Neutral,Neutral,Agree,Yes,Strongly disagree
+Domestic Chinese student,Female,Undergraduate,Year 3,3.3-3.7,3-5,Agree,Agree,Agree,Agree,Strongly disagree,Strongly agree,Agree,Disagree,Agree,Agree,Disagree,Neutral,Somewhat,Agree
+International student,Male,Undergraduate,Year 3,3.3-3.7,3-5,Neutral,Strongly agree,Neutral,Neutral,Agree,Agree,Neutral,Strongly agree,Strongly disagree,Agree,Agree,Disagree,Somewhat,Strongly agree
+Domestic Chinese student,Female,Undergraduate,Year 2,3.3-3.7,3-5,Strongly agree,Agree,Agree,Agree,Agree,Agree,Neutral,Agree,Agree,Agree,Disagree,Disagree,Somewhat,Agree
+"Hong Kong, Macau, or Taiwan student",Male,Undergraduate,Year 2,3.3-3.7,3-5,Disagree,Disagree,Agree,Neutral,Disagree,Agree,Agree,Agree,Neutral,Agree,Disagree,Disagree,Yes,Neutral
+International student,Male,Undergraduate,Year 3,3.3-3.7,3-5,Neutral,Neutral,Strongly agree,Neutral,Disagree,Agree,Agree,Agree,Strongly disagree,Neutral,Neutral,Agree,Somewhat,Disagree
+"Hong Kong, Macau, or Taiwan student",Female,Undergraduate,Year 1,3.3-3.7,More than 10,Neutral,Neutral,Strongly agree,Strongly agree,Disagree,Neutral,Agree,Agree,Disagree,Neutral,Disagree,Agree,Somewhat,Neutral
+"Hong Kong, Macau, or Taiwan student",Female,Undergraduate,Year 2,2.3-2.7,More than 10,Neutral,Strongly disagree,Neutral,Neutral,Disagree,Agree,Neutral,Disagree,Disagree,Strongly agree,Disagree,Neutral,Somewhat,Neutral
+Domestic Chinese student,Female,Undergraduate,Year 3,3.3-3.7,3-5,Agree,Neutral,Agree,Neutral,Disagree,Strongly agree,Agree,Agree,Agree,Neutral,Disagree,Neutral,Yes,Agree
+Domestic Chinese student,Male,Undergraduate,Year 3,3.3-3.7,3-5,Agree,Agree,Agree,Neutral,Neutral,Neutral,Neutral,Strongly agree,Disagree,Neutral,Strongly disagree,Neutral,Somewhat,Neutral
+International student,Male,Undergraduate,Year 1,2.7-3.0,6-10,Strongly agree,Agree,Strongly agree,Agree,Disagree,Agree,Agree,Agree,Neutral,Agree,Disagree,Disagree,No,Disagree
+International student,Male,Undergraduate,Year 2,3.3-3.7,3-5,Neutral,Neutral,Strongly agree,Agree,Neutral,Neutral,Neutral,Disagree,Disagree,Agree,Agree,Disagree,Somewhat,Disagree
+Domestic Chinese student,Male,Undergraduate,Year 1,2.7-3.0,3-5,Agree,Neutral,Neutral,Neutral,Disagree,Agree,Disagree,Disagree,Strongly disagree,Neutral,Strongly disagree,Disagree,Somewhat,Disagree
+Domestic Chinese student,Male,Undergraduate,Year 2,3.3-3.7,3-5,Neutral,Neutral,Strongly agree,Agree,Strongly disagree,Strongly agree,Agree,Neutral,Neutral,Agree,Strongly disagree,Disagree,Somewhat,Agree
+Domestic Chinese student,Female,Undergraduate,Year 1,3.3-3.7,6-10,Agree,Agree,Agree,Strongly disagree,Strongly disagree,Neutral,Neutral,Neutral,Disagree,Agree,Neutral,Disagree,Somewhat,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 3,3.3-3.7,3-5,Strongly disagree,Neutral,Disagree,Strongly agree,Disagree,Agree,Disagree,Neutral,Agree,Agree,Disagree,Disagree,No,Disagree
+International student,Female,PhD,Year 1,Above 3.7,3-5,Agree,Agree,Agree,Agree,Disagree,Neutral,Agree,Neutral,Disagree,Agree,Agree,Disagree,No,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 3,3.3-3.7,6-10,Agree,Disagree,Neutral,Disagree,Neutral,Agree,Disagree,Neutral,Neutral,Neutral,Neutral,Disagree,Somewhat,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 1,2.7-3.0,3-5,Agree,Agree,Agree,Disagree,Neutral,Agree,Neutral,Agree,Disagree,Strongly agree,Neutral,Agree,Somewhat,Neutral
+Domestic Chinese student,Male,Undergraduate,Year 2,Above 3.7,3-5,Agree,Neutral,Neutral,Agree,Strongly agree,Agree,Strongly agree,Strongly agree,Disagree,Neutral,Strongly disagree,Agree,Somewhat,Strongly agree
+"Hong Kong, Macau, or Taiwan student",Prefer not to say,Undergraduate,Year 2,Above 3.7,3-5,Neutral,Agree,Agree,Agree,Agree,Agree,Neutral,Disagree,Disagree,Agree,Disagree,Disagree,Yes,Disagree
+International student,Male,Undergraduate,Year 3,3.3-3.7,1-2,Neutral,Agree,Agree,Strongly agree,Agree,Strongly agree,Agree,Agree,Agree,Agree,Disagree,Disagree,Somewhat,Agree
+Domestic Chinese student,,Undergraduate,,3.3-3.7,,Agree,Agree,Neutral,Agree,Strongly agree,Agree,Agree,Strongly agree,Strongly disagree,Strongly disagree,Neutral,Disagree,Somewhat,Agree
+Domestic Chinese student,,Undergraduate,,3.3-3.7,,Disagree,Agree,Agree,Agree,Neutral,Neutral,Neutral,Agree,Neutral,Agree,Disagree,Strongly disagree,No,Agree
+Domestic Chinese student,,PhD,,3.3-3.7,,Neutral,Agree,Neutral,Disagree,Agree,Neutral,Neutral,Agree,Agree,Agree,Disagree,Strongly disagree,Somewhat,Agree
+Domestic Chinese student,,Undergraduate,,2.7-3.0,,Neutral,Disagree,Agree,Strongly agree,Disagree,Neutral,Agree,Disagree,Disagree,Agree,Neutral,Disagree,Somewhat,Agree
+Domestic Chinese student,,Undergraduate,,3.3-3.7,,Neutral,Agree,Neutral,Neutral,Disagree,Agree,Strongly agree,Agree,Strongly disagree,Agree,Disagree,Strongly disagree,Yes,Neutral
+Domestic Chinese student,,Undergraduate,,2.7-3.0,,Strongly agree,Disagree,Strongly agree,Agree,Disagree,Agree,Neutral,Agree,Disagree,Neutral,Strongly disagree,Strongly disagree,Yes,Neutral
+"Hong Kong, Macau, or Taiwan student",,Undergraduate,,Above 3.7,,Neutral,Neutral,Neutral,Agree,Disagree,Neutral,Agree,Strongly agree,Disagree,Strongly disagree,Disagree,Disagree,Yes,Strongly disagree
+Domestic Chinese student,,Undergraduate,,Above 3.7,,Neutral,Neutral,Strongly disagree,Agree,Agree,Agree,Neutral,Agree,Neutral,Neutral,Disagree,Neutral,Yes,Disagree
+International student,,Undergraduate,,3.3-3.7,,Agree,Agree,Strongly disagree,Neutral,Agree,Neutral,Agree,Neutral,Disagree,Agree,Neutral,Neutral,Somewhat,Neutral
+International student,,Undergraduate,,2.7-3.0,,Disagree,Strongly agree,Strongly agree,Neutral,Strongly disagree,Neutral,Agree,Neutral,Strongly disagree,Agree,Neutral,Disagree,Somewhat,Neutral
+International student,,Undergraduate,,2.7-3.0,,Agree,Strongly disagree,Strongly agree,Agree,Neutral,Agree,Neutral,Agree,Disagree,Agree,Agree,Disagree,Somewhat,Neutral
+Domestic Chinese student,,Undergraduate,,Above 3.7,,Strongly agree,Agree,Agree,Neutral,Neutral,Agree,Strongly agree,Neutral,Agree,Neutral,Disagree,Agree,Somewhat,Neutral
+"Hong Kong, Macau, or Taiwan student",,Undergraduate,,3.3-3.7,,Neutral,Agree,Agree,Disagree,Neutral,Strongly agree,Agree,Agree,Neutral,Neutral,Strongly agree,Disagree,No,Neutral
+Domestic Chinese student,,Undergraduate,,3.3-3.7,,Strongly agree,Strongly agree,Strongly agree,Neutral,Disagree,Agree,Agree,Strongly disagree,Disagree,Disagree,Agree,Neutral,Yes,Disagree

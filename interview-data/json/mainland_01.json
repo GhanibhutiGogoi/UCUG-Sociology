@@ -1,0 +1,110 @@
+{
+  "interview_id": "mainland_01",
+  "group": "mainland",
+  "respondent_label": "Respondent 1",
+  "metadata": {
+    "raw_background": "Mainland China, first-year undergraduate"
+  },
+  "responses": [
+    {
+      "question_number": 1,
+      "question": "Could you briefly introduce yourself — your program, year of study, and how long you have been at HKUST(GZ)?",
+      "answer": "Mainland China, first-year undergraduate"
+    },
+    {
+      "question_number": 2,
+      "question": "How would you describe the general social environment at HKUST(GZ)?",
+      "answer": "So-so / Average"
+    },
+    {
+      "question_number": 3,
+      "question": "How would you describe your interactions with international students at HKUST(GZ)?",
+      "answer": "Relatively few"
+    },
+    {
+      "question_number": 4,
+      "question": "Do you think it is easy or difficult for Chinese and international students to become friends here? Why?",
+      "answer": "Relatively easy; there are many international students"
+    },
+    {
+      "question_number": 5,
+      "question": "In your experience, do Chinese and international students mix naturally, or do they mostly stay in separate circles? Why?",
+      "answer": "Stay in separate circles; mainly because of language"
+    },
+    {
+      "question_number": 6,
+      "question": "What factors make interaction between Chinese and international students easier?",
+      "answer": "Language"
+    },
+    {
+      "question_number": 7,
+      "question": "What factors make interaction harder?",
+      "answer": "Quite a lot"
+    },
+    {
+      "question_number": 8,
+      "question": "To what extent do language or cultural differences affect communication between Chinese and international students?",
+      "answer": "To some extent; students tend to make friends with those who share similar language and culture, as communication is smoother"
+    },
+    {
+      "question_number": 9,
+      "question": "In your opinion, does social integration affect international students’ academic experiences? How?",
+      "answer": "Yes; UFUG courses are more difficult"
+    },
+    {
+      "question_number": 10,
+      "question": "Have you noticed any difference in your academic performance between UCUG and UFUG courses? Why?",
+      "answer": "I don’t know"
+    },
+    {
+      "question_number": 11,
+      "question": "From what you have observed, do international students seem to perform differently in UCUG and UFUG courses? Why?",
+      "answer": "No; classmates are very friendly"
+    },
+    {
+      "question_number": 12,
+      "question": "Do you think international students sometimes face disadvantages in group work, class participation, or access to academic support because of weaker social connections? Why or why not?",
+      "answer": "No"
+    },
+    {
+      "question_number": 13,
+      "question": "Have you noticed any differences in how Chinese and international students participate in group projects, study groups, or classroom interaction?",
+      "answer": "No; I have a fairly active social life"
+    },
+    {
+      "question_number": 14,
+      "question": "Do you think students with stronger social networks generally perform better academically at HKUST(GZ)? Why?",
+      "answer": "Language and culture"
+    },
+    {
+      "question_number": 15,
+      "question": "What do you think are the biggest barriers preventing stronger integration between Chinese and international students?",
+      "answer": "Yes; just my feeling"
+    },
+    {
+      "question_number": 16,
+      "question": "Do you think the university does enough to encourage interaction and inclusion between different student groups? Why or why not?",
+      "answer": "Course selection and dormitory arrangement make integration harder"
+    },
+    {
+      "question_number": 17,
+      "question": "Are there any university practices, campus habits, or classroom dynamics that unintentionally make integration harder?",
+      "answer": "I haven’t thought about it"
+    },
+    {
+      "question_number": 18,
+      "question": "What do you think HKUST(GZ) could do better to improve integration between Chinese and international students?",
+      "answer": "I don’t know"
+    }
+  ],
+  "summary_bullets": [
+    "First-year undergraduate from Mainland China.",
+    "Social environment perceived as average; made relatively few friends initially.",
+    "Thinks Chinese and international students tend to stay in separate circles mainly because of language.",
+    "Reports interacting with international students quite a lot.",
+    "Believes UFUG courses are more difficult.",
+    "Does not think international students are academically disadvantaged; sees classmates as friendly.",
+    "Identifies language and culture as central barriers.",
+    "Feels course selection and dormitory arrangements make integration harder."
+  ]
+}
