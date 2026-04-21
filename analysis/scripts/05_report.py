@@ -359,8 +359,132 @@ def main() -> None:
     body.append("_See `figures/10_new_interview_themes.png`._")
     body.append("")
 
-    # -------- 6. Headline findings --------------------------------------
-    body.append("## 6. Headline findings")
+    # -------- 6. Exploratory analyses ----------------------------------
+    body.append("## 6. Exploratory analyses")
+    body.append("")
+
+    pca = r.get("likert_pca", {})
+    if pca:
+        var = pca["explained_variance_ratio"]
+        cum = pca["cumulative_var"]
+        reversed_items = pca.get("items_reversed", [])
+        body.append("### 6a. PCA on the 14 Likert items")
+        body.append("")
+        body.append(f"Each Likert response was coded 1-5. Items where agreement "
+                    f"signals a negative experience "
+                    f"({', '.join(reversed_items)}) were reverse-coded so that "
+                    f"higher values consistently mean 'better integration / more "
+                    f"positive experience' on every dimension. Standardised and "
+                    f"decomposed with PCA.")
+        body.append("")
+        body.append(f"**Variance explained.** PC1 = {var[0]*100:.1f}%, "
+                    f"PC2 = {var[1]*100:.1f}%, PC3 = {var[2]*100:.1f}% "
+                    f"(cumulative: 2 PCs = {cum[1]*100:.1f}%, "
+                    f"3 PCs = {cum[2]*100:.1f}%).")
+        body.append("")
+        # Top 5 absolute PC1 loadings
+        loadings_df = pd.DataFrame(pca["loadings"]).T
+        pc1_top = loadings_df.reindex(
+            loadings_df["PC1"].abs().sort_values(ascending=False).index
+        ).head(5)
+        body.append("**PC1 is a 'general integration' factor.** The five items "
+                    "with the largest absolute PC1 loadings:")
+        body.append("")
+        for item, row in pc1_top.iterrows():
+            body.append(f"- `{item}`: PC1 = {row['PC1']:+.3f}")
+        body.append("")
+        body.append("All five load in the same direction after reverse-coding, "
+                    "meaning respondents who feel they belong also feel more "
+                    "motivated, report better grades, less study-group exclusion, "
+                    "and less language difficulty -- consistent with a single "
+                    "underlying 'integration' dimension capturing ~30 % of "
+                    "Likert variance.")
+        body.append("")
+        body.append("_See `figures/14_likert_pca.png`._")
+        body.append("")
+
+    q23 = r.get("q23_text_analysis", {})
+    if q23:
+        # JSON stored with orient="index"; pd.DataFrame(dict) transposes, so .T.
+        sc = pd.DataFrame(q23["sentiment_counts"]).T
+        for g in ["non_mainland", "mainland"]:
+            if g not in sc.columns:
+                sc[g] = 0
+        body.append(f"### 6b. Q23 open-ended text analysis "
+                    f"(n = {q23['n_total_with_response']})")
+        body.append("")
+        body.append("Open-ended answers to 'in what ways has your social "
+                    "experience at HKUST(GZ) affected your academic life, and "
+                    "what one change would most improve your experience?' were "
+                    "scored with a simple bilingual polarity lexicon (English + "
+                    "Chinese stems). Responses with no polarity hits and fewer "
+                    "than 25 characters, or containing explicit no-opinion "
+                    "phrases (`idk`, `no effect`, `I don't know`, etc.), were "
+                    "classified as *unscorable*.")
+        body.append("")
+        body.append("**Sentiment distribution by group:**")
+        body.append("")
+        body.append("| sentiment | non-mainland | mainland |")
+        body.append("|---|---:|---:|")
+        for lab in ["positive", "neutral", "negative", "unscorable"]:
+            nm_val = int(sc.loc[lab, "non_mainland"]) if lab in sc.index else 0
+            mn_val = int(sc.loc[lab, "mainland"]) if lab in sc.index else 0
+            body.append(f"| {lab} | {nm_val} | {mn_val} |")
+        body.append("")
+        fs = q23.get("fisher_neg_vs_not_neg", {})
+        if fs.get("p") is not None:
+            # Negative share among scorable responses
+            nm_sc = sum(
+                int(sc.loc[lab, "non_mainland"]) if lab in sc.index else 0
+                for lab in ["positive", "neutral", "negative"]
+            )
+            mn_sc = sum(
+                int(sc.loc[lab, "mainland"]) if lab in sc.index else 0
+                for lab in ["positive", "neutral", "negative"]
+            )
+            nm_neg = int(sc.loc["negative", "non_mainland"]) if "negative" in sc.index else 0
+            mn_neg = int(sc.loc["negative", "mainland"]) if "negative" in sc.index else 0
+            body.append(
+                f"Among scorable responses, **{_pct(nm_neg/nm_sc) if nm_sc else '0%'} "
+                f"({nm_neg}/{nm_sc}) of non-mainland responses are classified "
+                f"negative vs {_pct(mn_neg/mn_sc) if mn_sc else '0%'} "
+                f"({mn_neg}/{mn_sc}) of mainland responses** "
+                f"(Fisher odds ratio = {fs['odds_ratio']}, p = {fs['p']:.3f}). "
+                f"The direction matches the interview and Likert evidence; at "
+                f"n = {nm_sc + mn_sc} scorable responses the test is "
+                f"under-powered to reach alpha = 0.05."
+            )
+            body.append("")
+
+        # Keywords
+        nm_kw = list(q23["top_keywords_non_mainland"].items())[:10]
+        mn_kw = list(q23["top_keywords_mainland"].items())[:10]
+        body.append("**Top content words by group** (stopwords removed, bilingual):")
+        body.append("")
+        body.append("| rank | non-mainland | count | mainland | count |")
+        body.append("|---:|---|---:|---|---:|")
+        for i, ((w1, c1), (w2, c2)) in enumerate(
+                zip(nm_kw + [("", 0)] * (10 - len(nm_kw)),
+                    mn_kw + [("", 0)] * (10 - len(mn_kw))), 1):
+            body.append(f"| {i} | {w1} | {c1} | {w2} | {c2} |")
+        body.append("")
+        body.append("The word lists are the most legible finding in this whole "
+                    "analysis. Non-mainland responses are dominated by language "
+                    "and work/research vocabulary (*english*, *international*, "
+                    "*chinese*, *lab*, *research*) -- i.e. what language the "
+                    "environment runs in and where they end up interacting. "
+                    "Mainland responses are dominated by positive social/"
+                    "academic vocabulary (*good*, *friends*, *social*, "
+                    "*academic*, *better*, *learning*) -- i.e. they talk about "
+                    "enjoying the integration the other group is describing "
+                    "the absence of.")
+        body.append("")
+        body.append("_See `figures/15_q23_sentiment_and_keywords.png` and "
+                    "`data/q23_sentiment.csv` for per-respondent labels._")
+        body.append("")
+
+    # -------- 7. Headline findings --------------------------------------
+    body.append("## 7. Headline findings")
     body.append("")
     share_str = f"roughly {share:.0f} %" if merged > 0 else "a large share"
     body.append(f"1. **The survey's missing 3.0-3.3 GPA bin was absorbing {share_str} of "
@@ -396,7 +520,7 @@ def main() -> None:
                 f"0-{n_themes} scale.")
     body.append("")
 
-    body.append("## 7. Recommendations for follow-up data collection")
+    body.append("## 8. Recommendations for follow-up data collection")
     body.append("")
     body.append("- **Fix the GPA options** so `3.0-3.3` is explicit; re-run with a "
                 "larger cohort to firm up the GPA-gap estimate.")

@@ -381,6 +381,624 @@
       "chi2_p": 0.3025
     }
   },
+  "likert_pca": {
+    "items": [
+      "belong",
+      "meaningful_friendships",
+      "interact_chinese",
+      "comfort_init",
+      "language_hard",
+      "stay_in_groups",
+      "class_confidence",
+      "valued_in_groups",
+      "excluded_study_group",
+      "confident_succeed",
+      "social_motivation",
+      "social_grades",
+      "uni_enough"
+    ],
+    "items_reversed": [
+      "excluded_study_group",
+      "language_hard",
+      "social_grades",
+      "social_motivation",
+      "stay_in_groups"
+    ],
+    "explained_variance_ratio": [
+      0.304,
+      0.154,
+      0.108
+    ],
+    "cumulative_var": [
+      0.304,
+      0.458,
+      0.566
+    ],
+    "loadings": {
+      "belong": {
+        "PC1": 0.385,
+        "PC2": 0.17,
+        "PC3": 0.142
+      },
+      "meaningful_friendships": {
+        "PC1": 0.266,
+        "PC2": 0.282,
+        "PC3": -0.021
+      },
+      "interact_chinese": {
+        "PC1": 0.236,
+        "PC2": -0.371,
+        "PC3": 0.166
+      },
+      "comfort_init": {
+        "PC1": 0.213,
+        "PC2": 0.207,
+        "PC3": -0.531
+      },
+      "language_hard": {
+        "PC1": 0.308,
+        "PC2": -0.351,
+        "PC3": -0.129
+      },
+      "stay_in_groups": {
+        "PC1": 0.032,
+        "PC2": 0.01,
+        "PC3": 0.122
+      },
+      "class_confidence": {
+        "PC1": 0.28,
+        "PC2": 0.341,
+        "PC3": -0.13
+      },
+      "valued_in_groups": {
+        "PC1": 0.231,
+        "PC2": 0.325,
+        "PC3": 0.267
+      },
+      "excluded_study_group": {
+        "PC1": 0.327,
+        "PC2": -0.353,
+        "PC3": -0.143
+      },
+      "confident_succeed": {
+        "PC1": 0.234,
+        "PC2": 0.374,
+        "PC3": 0.347
+      },
+      "social_motivation": {
+        "PC1": 0.381,
+        "PC2": -0.23,
+        "PC3": -0.044
+      },
+      "social_grades": {
+        "PC1": 0.376,
+        "PC2": -0.082,
+        "PC3": -0.064
+      },
+      "uni_enough": {
+        "PC1": 0.066,
+        "PC2": -0.206,
+        "PC3": 0.635
+      }
+    },
+    "scores": [
+      {
+        "index": 0,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -0.747,
+        "PC2": -0.726,
+        "PC3": -0.318
+      },
+      {
+        "index": 1,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -0.255,
+        "PC2": -3.827,
+        "PC3": -2.466
+      },
+      {
+        "index": 2,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -0.063,
+        "PC2": 0.304,
+        "PC3": 1.071
+      },
+      {
+        "index": 3,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -2.908,
+        "PC2": 1.439,
+        "PC3": -1.852
+      },
+      {
+        "index": 4,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.874,
+        "PC2": 0.721,
+        "PC3": 0.569
+      },
+      {
+        "index": 5,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": -0.378,
+        "PC2": -1.777,
+        "PC3": 0.518
+      },
+      {
+        "index": 6,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.481,
+        "PC2": -0.739,
+        "PC3": -0.536
+      },
+      {
+        "index": 7,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.525,
+        "PC2": -2.693,
+        "PC3": -1.269
+      },
+      {
+        "index": 8,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": 0.32,
+        "PC2": -0.553,
+        "PC3": -1.445
+      },
+      {
+        "index": 9,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.599,
+        "PC2": -1.091,
+        "PC3": 2.11
+      },
+      {
+        "index": 10,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.445,
+        "PC2": -0.969,
+        "PC3": 2.343
+      },
+      {
+        "index": 11,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -2.17,
+        "PC2": -2.453,
+        "PC3": 1.531
+      },
+      {
+        "index": 12,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.637,
+        "PC2": -0.275,
+        "PC3": 0.196
+      },
+      {
+        "index": 13,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -1.757,
+        "PC2": 0.181,
+        "PC3": -0.108
+      },
+      {
+        "index": 14,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -2.558,
+        "PC2": 1.234,
+        "PC3": 1.819
+      },
+      {
+        "index": 15,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -1.049,
+        "PC2": 0.037,
+        "PC3": 0.05
+      },
+      {
+        "index": 16,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.789,
+        "PC2": -0.872,
+        "PC3": 1.31
+      },
+      {
+        "index": 17,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 2.599,
+        "PC2": 0.15,
+        "PC3": 0.103
+      },
+      {
+        "index": 18,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -2.121,
+        "PC2": -0.637,
+        "PC3": 0.073
+      },
+      {
+        "index": 19,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.668,
+        "PC2": 0.148,
+        "PC3": 0.826
+      },
+      {
+        "index": 20,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -0.199,
+        "PC2": -0.979,
+        "PC3": -1.454
+      },
+      {
+        "index": 21,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 2.512,
+        "PC2": -0.222,
+        "PC3": -0.013
+      },
+      {
+        "index": 22,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.238,
+        "PC2": -0.709,
+        "PC3": -0.682
+      },
+      {
+        "index": 23,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -3.912,
+        "PC2": 2.605,
+        "PC3": -2.763
+      },
+      {
+        "index": 24,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.266,
+        "PC2": -1.465,
+        "PC3": -0.481
+      },
+      {
+        "index": 25,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 4.213,
+        "PC2": -0.061,
+        "PC3": 0.651
+      },
+      {
+        "index": 26,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": 1.336,
+        "PC2": 5.039,
+        "PC3": 0.242
+      },
+      {
+        "index": 27,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 1.158,
+        "PC2": -2.036,
+        "PC3": 2.831
+      },
+      {
+        "index": 28,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -4.72,
+        "PC2": -1.28,
+        "PC3": -0.679
+      },
+      {
+        "index": 29,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.9,
+        "PC2": 1.163,
+        "PC3": -0.393
+      },
+      {
+        "index": 30,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": 0.856,
+        "PC2": -0.33,
+        "PC3": -0.432
+      },
+      {
+        "index": 31,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -4.167,
+        "PC2": 1.446,
+        "PC3": 1.635
+      },
+      {
+        "index": 32,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -1.189,
+        "PC2": -0.168,
+        "PC3": 0.203
+      },
+      {
+        "index": 33,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.111,
+        "PC2": -0.095,
+        "PC3": -0.094
+      },
+      {
+        "index": 34,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -1.125,
+        "PC2": 1.992,
+        "PC3": 1.263
+      },
+      {
+        "index": 35,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -1.738,
+        "PC2": -0.217,
+        "PC3": 0.198
+      },
+      {
+        "index": 36,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 1.596,
+        "PC2": -0.438,
+        "PC3": 0.024
+      },
+      {
+        "index": 37,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -0.405,
+        "PC2": -0.556,
+        "PC3": -2.375
+      },
+      {
+        "index": 38,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": 2.815,
+        "PC2": 2.286,
+        "PC3": 1.325
+      },
+      {
+        "index": 39,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": 2.767,
+        "PC2": -1.427,
+        "PC3": -1.818
+      },
+      {
+        "index": 40,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -1.754,
+        "PC2": 1.438,
+        "PC3": -0.418
+      },
+      {
+        "index": 41,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -0.998,
+        "PC2": 0.894,
+        "PC3": 0.364
+      },
+      {
+        "index": 42,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 3.343,
+        "PC2": 1.8,
+        "PC3": -1.694
+      },
+      {
+        "index": 43,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -3.436,
+        "PC2": -0.509,
+        "PC3": 0.761
+      },
+      {
+        "index": 44,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": 0.618,
+        "PC2": -0.505,
+        "PC3": 1.35
+      },
+      {
+        "index": 45,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 2.257,
+        "PC2": -1.01,
+        "PC3": -0.773
+      },
+      {
+        "index": 46,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.778,
+        "PC2": 1.003,
+        "PC3": 0.895
+      },
+      {
+        "index": 47,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": 0.985,
+        "PC2": 0.578,
+        "PC3": -1.04
+      },
+      {
+        "index": 48,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.849,
+        "PC2": -0.18,
+        "PC3": 0.532
+      },
+      {
+        "index": 49,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -0.728,
+        "PC2": 1.446,
+        "PC3": -0.837
+      },
+      {
+        "index": 50,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 0.362,
+        "PC2": -0.898,
+        "PC3": 0.627
+      },
+      {
+        "index": 51,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 2.036,
+        "PC2": 0.679,
+        "PC3": 0.435
+      },
+      {
+        "index": 52,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -0.228,
+        "PC2": 0.989,
+        "PC3": -0.724
+      },
+      {
+        "index": 53,
+        "status": "International student",
+        "group": "non_mainland",
+        "PC1": -4.196,
+        "PC2": 0.553,
+        "PC3": -0.191
+      },
+      {
+        "index": 54,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": -0.37,
+        "PC2": 0.446,
+        "PC3": 0.561
+      },
+      {
+        "index": 55,
+        "status": "Domestic Chinese student",
+        "group": "mainland",
+        "PC1": 4.432,
+        "PC2": 1.751,
+        "PC3": -1.21
+      },
+      {
+        "index": 56,
+        "status": "Hong Kong, Macau, or Taiwan student",
+        "group": "non_mainland",
+        "PC1": 0.803,
+        "PC2": -0.629,
+        "PC3": -0.351
+      }
+    ]
+  },
+  "q23_text_analysis": {
+    "n_total_with_response": 56,
+    "sentiment_counts": {
+      "positive": {
+        "non_mainland": 5,
+        "mainland": 13
+      },
+      "neutral": {
+        "non_mainland": 7,
+        "mainland": 8
+      },
+      "negative": {
+        "non_mainland": 5,
+        "mainland": 3
+      },
+      "unscorable": {
+        "non_mainland": 3,
+        "mainland": 13
+      }
+    },
+    "fisher_neg_vs_not_neg": {
+      "odds_ratio": 2.917,
+      "p": 0.2412
+    },
+    "top_keywords_non_mainland": {
+      "english": 7,
+      "international": 6,
+      "chinese": 5,
+      "lab": 4,
+      "work": 4,
+      "research": 3,
+      "study": 3,
+      "maybe": 3,
+      "due": 3,
+      "because": 3,
+      "speak": 3,
+      "group": 2,
+      "extremely": 2,
+      "support": 2,
+      "take": 2
+    },
+    "top_keywords_mainland": {
+      "academic": 7,
+      "good": 6,
+      "friends": 6,
+      "social": 5,
+      "course": 4,
+      "learning": 3,
+      "life": 3,
+      "better": 3,
+      "courses": 3,
+      "love": 3,
+      "like": 3,
+      "lot": 3,
+      "friend": 2,
+      "english": 2,
+      "myself": 2
+    }
+  },
   "interview_theme_tests": {
     "per_theme": [
       {

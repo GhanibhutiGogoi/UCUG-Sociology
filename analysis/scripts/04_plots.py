@@ -443,6 +443,135 @@ def plot_likert_by_group(likert_gr: dict, question_texts: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Figure 14: Likert PCA biplot (points coloured by group).
+# ---------------------------------------------------------------------------
+def plot_likert_pca(pca_out: dict) -> None:
+    scores = pd.DataFrame(pca_out["scores"])
+    loadings = pd.DataFrame(pca_out["loadings"]).T
+    var = pca_out["explained_variance_ratio"]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+    # Panel 1: scatter of respondents on PC1 vs PC2
+    palette = {
+        "mainland": "#4E79A7",
+        "non_mainland": "#E15759",
+    }
+    for grp, col in palette.items():
+        sub = scores[scores.group == grp]
+        ax1.scatter(sub.PC1, sub.PC2, s=60, alpha=0.75, color=col,
+                    edgecolor="black", linewidth=0.5,
+                    label=f"{grp.replace('_', '-')} (n={len(sub)})")
+    ax1.axhline(0, color="gray", lw=0.8, ls=":")
+    ax1.axvline(0, color="gray", lw=0.8, ls=":")
+    ax1.set_xlabel(f"PC1  ({var[0]*100:.1f}% variance)")
+    ax1.set_ylabel(f"PC2  ({var[1]*100:.1f}% variance)")
+    ax1.set_title("Respondents on first two principal components\n"
+                  "(Likert items reverse-coded so high = positive experience)",
+                  fontsize=12)
+    ax1.legend(loc="best")
+
+    # Panel 2: loadings as arrows / bar chart
+    order = loadings["PC1"].abs().sort_values(ascending=True).index
+    y = np.arange(len(order))
+    w = 0.4
+    ax2.barh(y - w / 2, loadings.loc[order, "PC1"], w, color="#4E79A7",
+             edgecolor="black", label="PC1 loading")
+    ax2.barh(y + w / 2, loadings.loc[order, "PC2"], w, color="#F28E2B",
+             edgecolor="black", label="PC2 loading")
+    ax2.axvline(0, color="black", lw=0.8)
+    ax2.set_yticks(y)
+    ax2.set_yticklabels(order, fontsize=9)
+    ax2.set_xlabel("loading")
+    ax2.set_title(f"Component loadings\n"
+                  f"cumulative variance: 2 PCs = {sum(var[:2])*100:.1f}%,  "
+                  f"3 PCs = {sum(var)*100:.1f}%",
+                  fontsize=12)
+    ax2.legend(loc="lower right", fontsize=9)
+    fig.tight_layout()
+    _save(fig, "14_likert_pca.png")
+
+
+# ---------------------------------------------------------------------------
+# Figure 15: Q23 sentiment distribution by group + keyword comparison.
+# ---------------------------------------------------------------------------
+def plot_q23_sentiment_and_keywords(q23: dict) -> None:
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6),
+                                    gridspec_kw={"width_ratios": [1, 1.3]})
+
+    # Panel 1: sentiment % by group
+    # The saved JSON uses `orient="index"`, so rows sit in the outer dict.
+    # pd.DataFrame(dict) treats outer keys as columns, so we transpose.
+    ct = pd.DataFrame(q23["sentiment_counts"]).T
+    order = ["positive", "neutral", "negative", "unscorable"]
+    colors = {"positive": "#2E8B57", "neutral": "#BBBBBB",
+              "negative": "#C0392B", "unscorable": "#EFEFEF"}
+    for g in ["non_mainland", "mainland"]:
+        if g not in ct.columns:
+            ct[g] = 0
+    ct = ct.reindex(order).fillna(0)
+    nm_pct = ct["non_mainland"] / max(1, ct["non_mainland"].sum()) * 100
+    mn_pct = ct["mainland"] / max(1, ct["mainland"].sum()) * 100
+
+    x = np.arange(len(order))
+    w = 0.4
+    for idx, lab in enumerate(order):
+        ax1.bar(x[idx] - w / 2, nm_pct[lab], w,
+                color=colors[lab], edgecolor="black",
+                label="Non-mainland" if idx == 0 else None,
+                hatch="//")
+        ax1.bar(x[idx] + w / 2, mn_pct[lab], w,
+                color=colors[lab], edgecolor="black",
+                label="Mainland" if idx == 0 else None)
+    for i, lab in enumerate(order):
+        ax1.text(x[i] - w / 2, nm_pct[lab] + 1, f"{int(ct.loc[lab,'non_mainland'])}",
+                 ha="center", va="bottom", fontsize=9)
+        ax1.text(x[i] + w / 2, mn_pct[lab] + 1, f"{int(ct.loc[lab,'mainland'])}",
+                 ha="center", va="bottom", fontsize=9)
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(order, rotation=15, ha="right")
+    ax1.set_ylabel("% of respondents in group")
+    ax1.set_title("Q23 response sentiment by group\n"
+                  "(hatched = non-mainland, solid = mainland; "
+                  "count labels above bars)",
+                  fontsize=11)
+    fs = q23.get("fisher_neg_vs_not_neg", {})
+    if fs.get("p") is not None:
+        ax1.text(0.5, -0.22,
+                 f"Fisher (negative vs not-negative, unscorable dropped): "
+                 f"OR={fs['odds_ratio']}, p={fs['p']:.3f}",
+                 transform=ax1.transAxes, ha="center", fontsize=9, style="italic")
+
+    # Panel 2: top keywords comparison (union of top 12 from each group)
+    nm_kw = pd.Series(q23["top_keywords_non_mainland"])
+    mn_kw = pd.Series(q23["top_keywords_mainland"])
+    union_kw = list(dict.fromkeys(
+        list(nm_kw.head(12).index) + list(mn_kw.head(12).index)
+    ))[:18]
+    d = pd.DataFrame({
+        "non_mainland": nm_kw.reindex(union_kw).fillna(0),
+        "mainland": mn_kw.reindex(union_kw).fillna(0),
+    })
+    d = d.sort_values("non_mainland", ascending=True)
+    y = np.arange(len(d))
+    ax2.barh(y - 0.2, d["non_mainland"], 0.4, color="#E15759",
+             edgecolor="black", label=f"Non-mainland")
+    ax2.barh(y + 0.2, d["mainland"], 0.4, color="#4E79A7",
+             edgecolor="black", label=f"Mainland")
+    ax2.set_yticks(y)
+    ax2.set_yticklabels(d.index, fontsize=10)
+    ax2.set_xlabel("keyword frequency")
+    ax2.set_title("Top Q23 keywords by group (union of top 12 from each)\n"
+                  "Language-oriented words dominate non-mainland; "
+                  "academic/social positives dominate mainland",
+                  fontsize=11)
+    ax2.legend(loc="lower right")
+
+    fig.tight_layout()
+    _save(fig, "15_q23_sentiment_and_keywords.png")
+
+
+# ---------------------------------------------------------------------------
 # Figure 13: aware_services + year + gender by group.
 # ---------------------------------------------------------------------------
 def plot_categoricals_by_group(rowlevel: pd.DataFrame, categoricals: dict) -> None:
@@ -589,6 +718,8 @@ def main() -> None:
     plot_likert_by_group(results["likert_by_group"], question_texts)
     plot_opinion_differences(results["interview_theme_tests"])
     plot_categoricals_by_group(rowlevel, results["categorical_by_group"])
+    plot_likert_pca(results["likert_pca"])
+    plot_q23_sentiment_and_keywords(results["q23_text_analysis"])
 
     pngs = sorted(FIG.glob("*.png"))
     print("=" * 70)

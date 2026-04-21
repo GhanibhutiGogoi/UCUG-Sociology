@@ -194,7 +194,61 @@ A second reading of the long docx transcripts surfaced five additional recurring
 
 _See `figures/10_new_interview_themes.png`._
 
-## 6. Headline findings
+## 6. Exploratory analyses
+
+### 6a. PCA on the 14 Likert items
+
+Each Likert response was coded 1-5. Items where agreement signals a negative experience (excluded_study_group, language_hard, social_grades, social_motivation, stay_in_groups) were reverse-coded so that higher values consistently mean 'better integration / more positive experience' on every dimension. Standardised and decomposed with PCA.
+
+**Variance explained.** PC1 = 30.4%, PC2 = 15.4%, PC3 = 10.8% (cumulative: 2 PCs = 45.8%, 3 PCs = 56.6%).
+
+**PC1 is a 'general integration' factor.** The five items with the largest absolute PC1 loadings:
+
+- `belong`: PC1 = +0.385
+- `social_motivation`: PC1 = +0.381
+- `social_grades`: PC1 = +0.376
+- `excluded_study_group`: PC1 = +0.327
+- `language_hard`: PC1 = +0.308
+
+All five load in the same direction after reverse-coding, meaning respondents who feel they belong also feel more motivated, report better grades, less study-group exclusion, and less language difficulty -- consistent with a single underlying 'integration' dimension capturing ~30 % of Likert variance.
+
+_See `figures/14_likert_pca.png`._
+
+### 6b. Q23 open-ended text analysis (n = 56)
+
+Open-ended answers to 'in what ways has your social experience at HKUST(GZ) affected your academic life, and what one change would most improve your experience?' were scored with a simple bilingual polarity lexicon (English + Chinese stems). Responses with no polarity hits and fewer than 25 characters, or containing explicit no-opinion phrases (`idk`, `no effect`, `I don't know`, etc.), were classified as *unscorable*.
+
+**Sentiment distribution by group:**
+
+| sentiment | non-mainland | mainland |
+|---|---:|---:|
+| positive | 5 | 13 |
+| neutral | 7 | 8 |
+| negative | 5 | 3 |
+| unscorable | 3 | 13 |
+
+Among scorable responses, **29.4% (5/17) of non-mainland responses are classified negative vs 12.5% (3/24) of mainland responses** (Fisher odds ratio = 2.917, p = 0.241). The direction matches the interview and Likert evidence; at n = 41 scorable responses the test is under-powered to reach alpha = 0.05.
+
+**Top content words by group** (stopwords removed, bilingual):
+
+| rank | non-mainland | count | mainland | count |
+|---:|---|---:|---|---:|
+| 1 | english | 7 | academic | 7 |
+| 2 | international | 6 | good | 6 |
+| 3 | chinese | 5 | friends | 6 |
+| 4 | lab | 4 | social | 5 |
+| 5 | work | 4 | course | 4 |
+| 6 | research | 3 | learning | 3 |
+| 7 | study | 3 | life | 3 |
+| 8 | maybe | 3 | better | 3 |
+| 9 | due | 3 | courses | 3 |
+| 10 | because | 3 | love | 3 |
+
+The word lists are the most legible finding in this whole analysis. Non-mainland responses are dominated by language and work/research vocabulary (*english*, *international*, *chinese*, *lab*, *research*) -- i.e. what language the environment runs in and where they end up interacting. Mainland responses are dominated by positive social/academic vocabulary (*good*, *friends*, *social*, *academic*, *better*, *learning*) -- i.e. they talk about enjoying the integration the other group is describing the absence of.
+
+_See `figures/15_q23_sentiment_and_keywords.png` and `data/q23_sentiment.csv` for per-respondent labels._
+
+## 7. Headline findings
 
 1. **The survey's missing 3.0-3.3 GPA bin was absorbing roughly 44 % of the inflated 3.3-3.7 bin.** After imputation, the pooled GPA distribution recovers a smooth truncated-normal shape (mu ~ 3.30, sigma ~ 0.40) that goodness-of-fit tests cannot reject.
 2. **Non-mainland students have a lower mean GPA than mainland students** -- 3.25 vs 3.44 -- but the survey at n = 57 does not give significance at alpha = 0.05 (Mann-Whitney two-sided p = 0.12, Cliff's delta -0.222). The HK/Macau/Taiwan sub-group specifically has the lowest mean (3.07, n = 7).
@@ -202,7 +256,7 @@ _See `figures/10_new_interview_themes.png`._
 4. **Interview evidence is unambiguous.** 4 themes separate international and mainland interview respondents with BH-adjusted p < 0.05: ucug easier than ufug, mandarin dominance, social affects grades, excluded from wechat. Mainland respondents essentially never report these.
 5. **Theme burden** permutation test (p = 0.0030) shows international interviewees report roughly twice as many structural friction themes as mainland students -- 8.273 vs 3.889 on a 0-14 scale.
 
-## 7. Recommendations for follow-up data collection
+## 8. Recommendations for follow-up data collection
 
 - **Fix the GPA options** so `3.0-3.3` is explicit; re-run with a larger cohort to firm up the GPA-gap estimate.
 - **Oversample internationals and HKMT students.** The current 20-vs-37 split leaves the comparison under-powered; a target of 25-30 per group would give reasonable power for a Mann-Whitney detect of Cliff's delta ~0.222.

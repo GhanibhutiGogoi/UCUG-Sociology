@@ -21,10 +21,17 @@ import json
 import math
 from pathlib import Path
 
+import re
+
+import jieba
 import numpy as np
 import pandas as pd
 from scipy import stats
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 from statsmodels.stats.multitest import multipletests
+
+jieba.setLogLevel(60)  # silence jieba's init chatter
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -368,6 +375,212 @@ def likert_summary(agg: pd.DataFrame) -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------------------
+# Exploratory: PCA on the 14 Likert items
+# ---------------------------------------------------------------------------
+# Items where AGREE = negative experience. We flip these before PCA so that
+# all high values point in the "better integration" direction -- makes the
+# loadings interpretable.
+REVERSE_ITEMS = {
+    "language_hard",
+    "stay_in_groups",
+    "excluded_study_group",
+    "social_motivation",
+    "social_grades",
+}
+
+
+def likert_pca(rowlevel: pd.DataFrame) -> dict:
+    likert_cols = [c for c in rowlevel.columns
+                   if rowlevel[c].dropna().astype(str).isin(LIKERT_ORDER).all()
+                   and rowlevel[c].notna().any()]
+    mat = rowlevel[likert_cols].map(LIKERT_CODE.get).astype(float)
+    for col in REVERSE_ITEMS & set(mat.columns):
+        mat[col] = 6 - mat[col]  # flip 1<->5, 2<->4, 3<->3
+    mat = mat.dropna()
+    status = rowlevel.loc[mat.index, "status"]
+    scaler = StandardScaler()
+    Z = scaler.fit_transform(mat.values)
+    pca = PCA(n_components=3)
+    scores = pca.fit_transform(Z)
+    return {
+        "items": list(mat.columns),
+        "items_reversed": sorted(list(REVERSE_ITEMS & set(mat.columns))),
+        "explained_variance_ratio": [round(float(v), 3) for v in pca.explained_variance_ratio_],
+        "cumulative_var": [round(float(v), 3) for v in np.cumsum(pca.explained_variance_ratio_)],
+        "loadings": pd.DataFrame(
+            pca.components_.T,
+            index=mat.columns,
+            columns=["PC1", "PC2", "PC3"],
+        ).round(3).to_dict(orient="index"),
+        "scores": [
+            {
+                "index": int(i),
+                "status": str(s),
+                "group": "mainland" if s == MAINLAND else "non_mainland",
+                "PC1": round(float(scores[idx, 0]), 3),
+                "PC2": round(float(scores[idx, 1]), 3),
+                "PC3": round(float(scores[idx, 2]), 3),
+            }
+            for idx, (i, s) in enumerate(zip(mat.index, status))
+        ],
+    }
+
+
+# ---------------------------------------------------------------------------
+# Exploratory: Q23 open-ended text analysis (sentiment + keywords)
+# ---------------------------------------------------------------------------
+POS_LEX_EN = {
+    "good", "great", "helpful", "improve", "improved", "better", "enjoy",
+    "enjoyed", "love", "loved", "like", "liked", "friendly", "easy", "comfort",
+    "comfortable", "support", "supportive", "valued", "happy", "fine", "well",
+    "ok", "okay", "nice", "grateful", "thank", "thanks", "best", "belong",
+    "belongs", "included", "inclusion", "enrich", "enriched", "enriches", "boost",
+    "boosts", "excellent", "welcome", "welcoming", "positive", "motivation",
+    "motivated", "friend", "friends",
+}
+POS_LEX_ZH = {"好", "不错", "喜欢", "感谢", "舒服", "积极", "帮助", "友好", "开心"}
+
+NEG_LEX_EN = {
+    "bad", "difficult", "hard", "lonely", "alone", "isolated", "excluded",
+    "exclusion", "exclude", "struggle", "struggles", "struggling", "problem",
+    "problems", "disconnect", "disconnected", "barrier", "barriers", "refuse",
+    "refused", "worse", "unhappy", "sad", "boring", "cannot", "can't",
+    "discrimination", "discriminate", "unequipped", "unfair", "unfriendly",
+    "negatively", "negative", "worsen", "worsened", "depressed", "anxious",
+    "stressed", "stress",
+}
+NEG_LEX_ZH = {"难", "孤独", "问题", "不好", "消极", "负面", "缺乏", "不够", "压力"}
+
+# short/no-signal responses we classify as "unscorable" rather than neutral
+STOPWORDS_EN = {
+    "a", "an", "the", "of", "in", "on", "at", "for", "to", "and", "or", "but",
+    "is", "are", "was", "were", "be", "been", "being", "it", "its", "this",
+    "that", "these", "those", "i", "me", "my", "you", "your", "we", "our",
+    "us", "he", "she", "his", "her", "they", "them", "their", "am", "have",
+    "has", "had", "do", "does", "did", "doing", "would", "could", "should",
+    "will", "shall", "may", "might", "can", "not", "no", "yes", "s", "t",
+    "as", "so", "if", "then", "than", "there", "here", "about", "with",
+    "from", "by", "into", "out", "up", "down", "off", "over", "just",
+    "also", "too", "very", "more", "most", "such", "which", "who", "what",
+    "when", "where", "why", "how", "all", "any", "each", "other", "some",
+    "only", "own", "same", "one", "two", "three", "get", "got", "make",
+    "made", "go", "goes", "going", "went", "come", "came", "see", "seen",
+    "know", "known", "say", "said", "think", "thought", "feel", "felt",
+    "want", "wanted", "find", "found", "help", "helps", "helped", "im",
+    "hkust", "gz", "campus", "university", "students", "student", "people",
+    "idk", "dk", "nope", "etc", "eg", "em", "emm", "emmm", "oh",
+}
+STOPWORDS_ZH = {"的", "是", "我", "你", "他", "她", "它", "了", "在", "也", "都"}
+
+
+def _tokenize(text: str) -> list[str]:
+    """Bilingual tokenise: jieba for CJK, whitespace + punctuation for Latin."""
+    if not text:
+        return []
+    # Split by whitespace and punctuation for the English side.
+    out = []
+    # Isolate CJK runs and Latin runs.
+    for segment in re.split(r"([一-鿿]+)", text):
+        if not segment.strip():
+            continue
+        if re.match(r"^[一-鿿]+$", segment):
+            out.extend([t for t in jieba.cut(segment) if t.strip()])
+        else:
+            toks = re.findall(r"[A-Za-z']+", segment.lower())
+            out.extend(toks)
+    return out
+
+
+def _sentiment(text: str) -> tuple[str, int, int]:
+    """Return (label, pos_hits, neg_hits). Label in {positive, negative, neutral, unscorable}."""
+    if not isinstance(text, str) or not text.strip():
+        return ("unscorable", 0, 0)
+    toks = _tokenize(text)
+    # Chinese words from jieba may be multi-char; check membership directly.
+    pos = sum(1 for t in toks if t in POS_LEX_EN or t in POS_LEX_ZH)
+    neg = sum(1 for t in toks if t in NEG_LEX_EN or t in NEG_LEX_ZH)
+    # Negation flip: "no", "not", "don't" before a polarity word inverts it.
+    # Simple version: treat "no effect", "not bad", "not enough" specifically.
+    low = text.lower()
+    if re.search(r"\b(no effect|no ideas|i (don'?t|do not) know|not really|no\.?$|idk|dk)\b", low):
+        # explicit no-opinion phrasing
+        if pos == 0 and neg == 0:
+            return ("unscorable", 0, 0)
+    # Short responses with no lexicon hits -> unscorable
+    if pos == 0 and neg == 0 and len(low) < 25:
+        return ("unscorable", 0, 0)
+    if pos > neg:
+        return ("positive", pos, neg)
+    if neg > pos:
+        return ("negative", pos, neg)
+    return ("neutral", pos, neg)
+
+
+def q23_text_analysis(rowlevel: pd.DataFrame) -> dict:
+    df = rowlevel[["status", "open_ended"]].copy()
+    df["group"] = np.where(df.status == MAINLAND, "mainland", "non_mainland")
+    labels = df["open_ended"].apply(_sentiment)
+    df["sentiment"] = [l[0] for l in labels]
+    df["pos_hits"] = [l[1] for l in labels]
+    df["neg_hits"] = [l[2] for l in labels]
+    sentiment_ct = pd.crosstab(df.sentiment, df.group).reindex(
+        ["positive", "neutral", "negative", "unscorable"]
+    ).fillna(0).astype(int)
+    for g in ["non_mainland", "mainland"]:
+        if g not in sentiment_ct.columns:
+            sentiment_ct[g] = 0
+    sentiment_ct = sentiment_ct[["non_mainland", "mainland"]]
+
+    # Fisher test on positive+neutral vs negative, dropping unscorable
+    scored = df[df.sentiment.isin(["positive", "neutral", "negative"])]
+    try:
+        pos_neu_neg = pd.crosstab(
+            scored.sentiment.where(scored.sentiment == "negative", "not_negative"),
+            scored.group,
+        )
+        for g in ["non_mainland", "mainland"]:
+            if g not in pos_neu_neg.columns:
+                pos_neu_neg[g] = 0
+        pos_neu_neg = pos_neu_neg[["non_mainland", "mainland"]]
+        or_, p_fisher = stats.fisher_exact(pos_neu_neg.values)
+    except Exception:
+        or_, p_fisher = float("nan"), float("nan")
+
+    # Top keywords by group (exclude stopwords, short tokens)
+    def clean_tokens(text_list):
+        bag = []
+        for t in text_list:
+            for tok in _tokenize(t if isinstance(t, str) else ""):
+                if len(tok) < 2:
+                    continue
+                if tok in STOPWORDS_EN or tok in STOPWORDS_ZH:
+                    continue
+                bag.append(tok)
+        return bag
+
+    kw_nm = pd.Series(clean_tokens(df.loc[df.group == "non_mainland", "open_ended"])).value_counts()
+    kw_mn = pd.Series(clean_tokens(df.loc[df.group == "mainland", "open_ended"])).value_counts()
+    top_nm = kw_nm.head(15).to_dict()
+    top_mn = kw_mn.head(15).to_dict()
+
+    # Save a per-respondent CSV for the report/debugging
+    df[["status", "group", "open_ended", "sentiment", "pos_hits", "neg_hits"]].to_csv(
+        DATA / "q23_sentiment.csv", index=False
+    )
+
+    return {
+        "n_total_with_response": int(df["open_ended"].notna().sum()),
+        "sentiment_counts": sentiment_ct.astype(int).to_dict(orient="index"),
+        "fisher_neg_vs_not_neg": {
+            "odds_ratio": None if np.isnan(or_) else round(float(or_), 3),
+            "p": None if np.isnan(p_fisher) else round(float(p_fisher), 4),
+        },
+        "top_keywords_non_mainland": top_nm,
+        "top_keywords_mainland": top_mn,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Interview theme tests (unchanged from prior pass)
 # ---------------------------------------------------------------------------
 def interview_theme_tests(themes: pd.DataFrame) -> dict:
@@ -440,6 +653,8 @@ def main() -> None:
     gpa_joint = gpa_joint_tests(rowlevel)
     likert_gr = likert_by_group(rowlevel)
     categoricals = categorical_by_group(rowlevel)
+    pca_out = likert_pca(rowlevel)
+    q23 = q23_text_analysis(rowlevel)
 
     likert_df = likert_summary(agg)
     likert_df.to_csv(DATA / "likert_summary.csv", index=False)
@@ -456,6 +671,8 @@ def main() -> None:
         "gpa_joint_tests": gpa_joint,
         "likert_by_group": likert_gr,
         "categorical_by_group": categoricals,
+        "likert_pca": pca_out,
+        "q23_text_analysis": q23,
         "interview_theme_tests": theme_tests,
         "interview_theme_burden": burden,
     }
@@ -498,6 +715,28 @@ def main() -> None:
 
     print(f"\nInterview theme burden: intl={burden['intl_mean_burden']}, "
           f"mnl={burden['mnl_mean_burden']}, perm p={burden['perm_p']}")
+
+    print(f"\nLikert PCA: variance explained = "
+          f"{pca_out['explained_variance_ratio']} "
+          f"(cum {pca_out['cumulative_var']})")
+    print("  top |loading| on PC1 by magnitude:")
+    loadings = pd.DataFrame(pca_out["loadings"]).T
+    for item, row in loadings.reindex(
+        loadings["PC1"].abs().sort_values(ascending=False).index
+    ).head(5).iterrows():
+        print(f"    {item:<25s} PC1={row['PC1']:+.3f}  PC2={row['PC2']:+.3f}")
+
+    print(f"\nQ23 sentiment (n={q23['n_total_with_response']}):")
+    ct = pd.DataFrame(q23["sentiment_counts"])
+    print(ct.to_string())
+    fs = q23["fisher_neg_vs_not_neg"]
+    if fs["p"] is not None:
+        print(f"  Fisher (negative vs not-negative, dropping unscorable): "
+              f"OR={fs['odds_ratio']}, p={fs['p']}")
+    print(f"  Top non-mainland keywords: "
+          f"{list(q23['top_keywords_non_mainland'].items())[:8]}")
+    print(f"  Top mainland keywords:     "
+          f"{list(q23['top_keywords_mainland'].items())[:8]}")
 
     print(f"\nCategorical variables by group:")
     for qid, res in categoricals.items():
