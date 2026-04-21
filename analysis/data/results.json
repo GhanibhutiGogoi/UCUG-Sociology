@@ -272,6 +272,115 @@
       }
     ]
   },
+  "categorical_by_group": {
+    "social_circle": {
+      "kind": "ordinal",
+      "n_non_mainland": 16,
+      "n_mainland": 27,
+      "crosstab": {
+        "0": {
+          "non_mainland": 0,
+          "mainland": 1
+        },
+        "1-2": {
+          "non_mainland": 2,
+          "mainland": 1
+        },
+        "3-5": {
+          "non_mainland": 7,
+          "mainland": 16
+        },
+        "6-10": {
+          "non_mainland": 3,
+          "mainland": 6
+        },
+        "More than 10": {
+          "non_mainland": 4,
+          "mainland": 3
+        }
+      },
+      "chi2": 3.407,
+      "chi2_p": 0.4922,
+      "mannwhitney_p": 0.5541,
+      "mean_code_non_mainland": 3.562,
+      "mean_code_mainland": 3.333,
+      "mean_code_diff": 0.229,
+      "cliffs_delta": 0.102
+    },
+    "aware_services": {
+      "kind": "ordinal",
+      "n_non_mainland": 20,
+      "n_mainland": 37,
+      "crosstab": {
+        "No": {
+          "non_mainland": 3,
+          "mainland": 5
+        },
+        "Somewhat": {
+          "non_mainland": 12,
+          "mainland": 25
+        },
+        "Yes": {
+          "non_mainland": 5,
+          "mainland": 7
+        }
+      },
+      "chi2": 0.363,
+      "chi2_p": 0.834,
+      "mannwhitney_p": 0.7743,
+      "mean_code_non_mainland": 2.1,
+      "mean_code_mainland": 2.054,
+      "mean_code_diff": 0.046,
+      "cliffs_delta": 0.041
+    },
+    "year": {
+      "kind": "ordinal",
+      "n_non_mainland": 16,
+      "n_mainland": 27,
+      "crosstab": {
+        "Year 1": {
+          "non_mainland": 8,
+          "mainland": 9
+        },
+        "Year 2": {
+          "non_mainland": 4,
+          "mainland": 9
+        },
+        "Year 3": {
+          "non_mainland": 4,
+          "mainland": 9
+        }
+      },
+      "chi2": 1.167,
+      "chi2_p": 0.5578,
+      "mannwhitney_p": 0.3426,
+      "mean_code_non_mainland": 1.75,
+      "mean_code_mainland": 2.0,
+      "mean_code_diff": -0.25,
+      "cliffs_delta": -0.167
+    },
+    "gender": {
+      "kind": "nominal",
+      "n_non_mainland": 16,
+      "n_mainland": 27,
+      "crosstab": {
+        "Male": {
+          "non_mainland": 11,
+          "mainland": 13
+        },
+        "Female": {
+          "non_mainland": 5,
+          "mainland": 12
+        },
+        "Prefer not to say": {
+          "non_mainland": 0,
+          "mainland": 2
+        }
+      },
+      "chi2": 2.392,
+      "chi2_p": 0.3025
+    }
+  },
   "interview_theme_tests": {
     "per_theme": [
       {

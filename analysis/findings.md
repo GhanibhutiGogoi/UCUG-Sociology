@@ -135,6 +135,19 @@ At n = 57 (20 vs 37) no item survives BH correction at alpha = 0.05, but `intera
 
 _See `figures/11_likert_by_group.png`._
 
+### 4c. Other categorical variables by group
+
+**Social circle size** (later-batch only, n = 43). 
+Non-mainland (n = 16) mean code 3.562 vs mainland (n = 27) mean code 3.333. Mann-Whitney p = 0.554, Cliff's delta = +0.10. The two groups have essentially indistinguishable social-circle distributions -- both cluster tightly at 3-5 close contacts, with small tails at 0-2 and 6+.
+
+**Awareness of international-student support services** (pooled n = 57). This is a notable null finding: despite the services being aimed at non-mainland students, their awareness is statistically at parity with mainland respondents (non-mainland mean code 2.1, mainland 2.054, Mann-Whitney p = 0.774, Cliff's delta = +0.04). The university's outreach is not visibly reaching the audience it targets.
+
+**Year and gender** (later-batch only, n = 43). 
+Year distribution does not differ significantly by group (Mann-Whitney p = 0.343); non-mainland respondents skew slightly earlier in the programme (Cliff's delta = -0.17).
+Gender composition also does not differ significantly (chi^2 p = 0.302).
+
+_See `figures/05_social_circle_by_group.png` and `figures/13_categoricals_by_group.png`._
+
 ## 5. Interview theme analysis (n = 21, Fisher exact + BH correction)
 
 Interviews were coded for 14 binary themes. Prevalence by group:

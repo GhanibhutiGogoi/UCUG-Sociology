@@ -161,24 +161,60 @@ def plot_agree_ci(likert_df: pd.DataFrame, n_total: int) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Figure 5: Social-circle size distribution (B-only, n=43).
+# Figure 5: Social-circle size by group (B-only, n=43).
 # ---------------------------------------------------------------------------
-def plot_social_circle(agg: pd.DataFrame) -> None:
-    sub = agg[agg.question_id == "social_circle"]
-    n = int(sub["count"].sum())
-    order = ["0", "1-2", "3-5", "6-10", "More than 10"]
-    counts = sub.set_index("option")["count"].reindex(order).fillna(0)
-    fig, ax = plt.subplots(figsize=(9, 5))
-    bars = ax.bar(order, counts, color="#4E79A7", edgecolor="black")
-    for b, c in zip(bars, counts):
-        ax.text(b.get_x() + b.get_width() / 2, c + 0.3, int(c),
-                ha="center", va="bottom", fontsize=11)
-    ax.set_ylabel(f"respondents (n = {n}, later-batch only)")
-    ax.set_xlabel("Size of main social circle")
-    ax.set_title("Social circle size (asked only in the second export batch, n = 43)",
-                 fontsize=13)
+def _grouped_percent_bars(ax, crosstab: pd.DataFrame, order: list[str],
+                          title: str, xlabel: str,
+                          nm_label: str, mn_label: str,
+                          annotation: str = "") -> None:
+    """Side-by-side percent bars for non-mainland vs mainland on a categorical."""
+    ct = crosstab.reindex(order).fillna(0)
+    nm_pct = ct["non_mainland"] / max(1, ct["non_mainland"].sum()) * 100
+    mn_pct = ct["mainland"] / max(1, ct["mainland"].sum()) * 100
+    x = np.arange(len(order))
+    w = 0.4
+    b1 = ax.bar(x - w / 2, nm_pct.values, w, label=nm_label,
+                color="#E15759", edgecolor="black")
+    b2 = ax.bar(x + w / 2, mn_pct.values, w, label=mn_label,
+                color="#4E79A7", edgecolor="black")
+    for b, v in list(zip(b1, nm_pct.values)) + list(zip(b2, mn_pct.values)):
+        if v > 0:
+            ax.text(b.get_x() + b.get_width() / 2, v + 1, f"{v:.0f}%",
+                    ha="center", va="bottom", fontsize=9)
+    ax.set_xticks(x)
+    ax.set_xticklabels(order, rotation=15, ha="right")
+    ax.set_ylabel("% of group")
+    ax.set_xlabel(xlabel)
+    ax.set_title(title + (f"\n{annotation}" if annotation else ""), fontsize=11)
+    ax.legend(fontsize=9, loc="upper left")
+    ax.set_ylim(0, max(nm_pct.max(), mn_pct.max()) * 1.25 + 5)
+
+
+def plot_social_circle_by_group(rowlevel: pd.DataFrame, categoricals: dict) -> None:
+    d = rowlevel.dropna(subset=["social_circle"]).copy()
+    d["group"] = np.where(d.status == MAINLAND, "mainland", "non_mainland")
+    ct = pd.crosstab(d.social_circle, d.group)
+    for g in ["non_mainland", "mainland"]:
+        if g not in ct.columns:
+            ct[g] = 0
+    res = categoricals.get("social_circle", {})
+    n_nm = res.get("n_non_mainland", 0)
+    n_mn = res.get("n_mainland", 0)
+    annot = ""
+    if "mannwhitney_p" in res:
+        annot = (f"Mann-Whitney p = {res['mannwhitney_p']:.3f}, "
+                 f"Cliff's delta = {res['cliffs_delta']:+.2f}  "
+                 f"(later-batch only, n = {n_nm+n_mn})")
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+    _grouped_percent_bars(ax, ct,
+                          ["0", "1-2", "3-5", "6-10", "More than 10"],
+                          "Social circle size by group",
+                          "Size of main social circle",
+                          f"Non-mainland (n={n_nm})",
+                          f"Mainland Chinese (n={n_mn})",
+                          annotation=annot)
     fig.tight_layout()
-    _save(fig, "05_social_circle.png")
+    _save(fig, "05_social_circle_by_group.png")
 
 
 # ---------------------------------------------------------------------------
@@ -407,6 +443,79 @@ def plot_likert_by_group(likert_gr: dict, question_texts: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Figure 13: aware_services + year + gender by group.
+# ---------------------------------------------------------------------------
+def plot_categoricals_by_group(rowlevel: pd.DataFrame, categoricals: dict) -> None:
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5.5))
+
+    # Panel 1: aware_services (pooled n=57)
+    d = rowlevel.dropna(subset=["aware_services"]).copy()
+    d["group"] = np.where(d.status == MAINLAND, "mainland", "non_mainland")
+    ct = pd.crosstab(d.aware_services, d.group)
+    for g in ["non_mainland", "mainland"]:
+        if g not in ct.columns:
+            ct[g] = 0
+    res = categoricals.get("aware_services", {})
+    annot = ""
+    if "mannwhitney_p" in res:
+        annot = (f"MW p = {res['mannwhitney_p']:.3f}, "
+                 f"delta = {res['cliffs_delta']:+.2f}  (n = {res['n_non_mainland']+res['n_mainland']})")
+    _grouped_percent_bars(
+        axes[0], ct, ["No", "Somewhat", "Yes"],
+        "Awareness of international-student support services",
+        "Aware of support services?",
+        f"Non-mainland (n={res.get('n_non_mainland', 0)})",
+        f"Mainland (n={res.get('n_mainland', 0)})",
+        annotation=annot,
+    )
+
+    # Panel 2: year of study (B-only)
+    d = rowlevel.dropna(subset=["year"]).copy()
+    d["group"] = np.where(d.status == MAINLAND, "mainland", "non_mainland")
+    ct = pd.crosstab(d.year, d.group)
+    for g in ["non_mainland", "mainland"]:
+        if g not in ct.columns:
+            ct[g] = 0
+    res = categoricals.get("year", {})
+    annot = ""
+    if "mannwhitney_p" in res:
+        annot = (f"MW p = {res['mannwhitney_p']:.3f}, "
+                 f"delta = {res['cliffs_delta']:+.2f}  (later-batch, n = {res['n_non_mainland']+res['n_mainland']})")
+    _grouped_percent_bars(
+        axes[1], ct, ["Year 1", "Year 2", "Year 3"],
+        "Year of study",
+        "Year",
+        f"Non-mainland (n={res.get('n_non_mainland', 0)})",
+        f"Mainland (n={res.get('n_mainland', 0)})",
+        annotation=annot,
+    )
+
+    # Panel 3: gender (B-only)
+    d = rowlevel.dropna(subset=["gender"]).copy()
+    d["group"] = np.where(d.status == MAINLAND, "mainland", "non_mainland")
+    ct = pd.crosstab(d.gender, d.group)
+    for g in ["non_mainland", "mainland"]:
+        if g not in ct.columns:
+            ct[g] = 0
+    res = categoricals.get("gender", {})
+    annot = ""
+    if res.get("chi2_p") is not None:
+        annot = f"chi2 p = {res['chi2_p']:.3f}  (later-batch, n = {res['n_non_mainland']+res['n_mainland']})"
+    _grouped_percent_bars(
+        axes[2], ct, ["Male", "Female", "Prefer not to say"],
+        "Gender",
+        "Gender",
+        f"Non-mainland (n={res.get('n_non_mainland', 0)})",
+        f"Mainland (n={res.get('n_mainland', 0)})",
+        annotation=annot,
+    )
+
+    fig.suptitle("Other categorical variables by group", fontsize=13, y=1.02)
+    fig.tight_layout()
+    _save(fig, "13_categoricals_by_group.png")
+
+
+# ---------------------------------------------------------------------------
 # Figure 12: Interview opinion differences (kept as qualitative supplement).
 # ---------------------------------------------------------------------------
 def plot_opinion_differences(theme_tests: dict) -> None:
@@ -471,7 +580,7 @@ def main() -> None:
     plot_gpa_density(normalization, imputed)
     plot_gpa_distribution(imputed)
     plot_agree_ci(likert_df, n_total)
-    plot_social_circle(agg)
+    plot_social_circle_by_group(rowlevel, results["categorical_by_group"])
     plot_integration_stack(agg, n_total)
     plot_theme_prevalence(results["interview_theme_tests"])
     plot_theme_burden(themes, results["interview_theme_burden"])
@@ -479,6 +588,7 @@ def main() -> None:
     plot_new_themes(results["interview_theme_tests"])
     plot_likert_by_group(results["likert_by_group"], question_texts)
     plot_opinion_differences(results["interview_theme_tests"])
+    plot_categoricals_by_group(rowlevel, results["categorical_by_group"])
 
     pngs = sorted(FIG.glob("*.png"))
     print("=" * 70)

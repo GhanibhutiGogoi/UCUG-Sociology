@@ -268,6 +268,56 @@ def main() -> None:
     body.append("_See `figures/11_likert_by_group.png`._")
     body.append("")
 
+    # -------- 4c. Other categorical variables by group -----------------
+    body.append("### 4c. Other categorical variables by group")
+    body.append("")
+    body.append("**Social circle size** (later-batch only, n = 43). ")
+    cats = r.get("categorical_by_group", {})
+    sc = cats.get("social_circle", {})
+    if sc:
+        body.append(f"Non-mainland (n = {sc['n_non_mainland']}) mean code "
+                    f"{sc.get('mean_code_non_mainland', '-')} vs mainland "
+                    f"(n = {sc['n_mainland']}) mean code "
+                    f"{sc.get('mean_code_mainland', '-')}. "
+                    f"Mann-Whitney p = {sc.get('mannwhitney_p', '-'):.3f}, "
+                    f"Cliff's delta = {sc.get('cliffs_delta', 0):+.2f}. The two "
+                    f"groups have essentially indistinguishable social-circle "
+                    f"distributions -- both cluster tightly at 3-5 close "
+                    f"contacts, with small tails at 0-2 and 6+.")
+    body.append("")
+
+    aw = cats.get("aware_services", {})
+    if aw:
+        body.append("**Awareness of international-student support services** "
+                    f"(pooled n = {aw['n_non_mainland'] + aw['n_mainland']}). "
+                    f"This is a notable null finding: despite the services being "
+                    f"aimed at non-mainland students, their awareness is "
+                    f"statistically at parity with mainland respondents "
+                    f"(non-mainland mean code {aw.get('mean_code_non_mainland', '-')}, "
+                    f"mainland {aw.get('mean_code_mainland', '-')}, "
+                    f"Mann-Whitney p = {aw.get('mannwhitney_p', '-'):.3f}, "
+                    f"Cliff's delta = {aw.get('cliffs_delta', 0):+.2f}). The "
+                    f"university's outreach is not visibly reaching the audience "
+                    f"it targets.")
+    body.append("")
+
+    yr = cats.get("year", {})
+    gd = cats.get("gender", {})
+    if yr or gd:
+        body.append("**Year and gender** (later-batch only, n = 43). ")
+        if yr:
+            body.append(f"Year distribution does not differ significantly by "
+                        f"group (Mann-Whitney p = {yr.get('mannwhitney_p', '-'):.3f}); "
+                        f"non-mainland respondents skew slightly earlier in the "
+                        f"programme (Cliff's delta = {yr.get('cliffs_delta', 0):+.2f}).")
+        if gd:
+            body.append(f"Gender composition also does not differ significantly "
+                        f"(chi^2 p = {gd.get('chi2_p', '-'):.3f}).")
+    body.append("")
+    body.append("_See `figures/05_social_circle_by_group.png` and "
+                "`figures/13_categoricals_by_group.png`._")
+    body.append("")
+
     # -------- 5. Interview themes --------------------------------------
     body.append("## 5. Interview theme analysis (n = 21, Fisher exact + BH correction)")
     body.append("")

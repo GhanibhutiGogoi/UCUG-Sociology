@@ -264,6 +264,78 @@ def likert_by_group(rowlevel: pd.DataFrame) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Categorical (single-choice / ordinal) variables crossed with status
+# ---------------------------------------------------------------------------
+CATEGORICAL_BY_GROUP = [
+    ("social_circle", ["0", "1-2", "3-5", "6-10", "More than 10"], "ordinal"),
+    ("aware_services", ["No", "Somewhat", "Yes"], "ordinal"),
+    ("year", ["Year 1", "Year 2", "Year 3"], "ordinal"),
+    ("gender", ["Male", "Female", "Prefer not to say"], "nominal"),
+]
+
+
+def categorical_by_group(rowlevel: pd.DataFrame) -> dict:
+    """For each categorical variable, return a crosstab (non-mainland vs mainland)
+    with Fisher / chi-square test and ordinal Mann-Whitney where applicable."""
+    out = {}
+    for qid, ordering, kind in CATEGORICAL_BY_GROUP:
+        if qid not in rowlevel.columns:
+            continue
+        sub = rowlevel[[qid, "status"]].dropna()
+        if sub.empty:
+            continue
+        sub = sub.assign(group=np.where(sub.status == MAINLAND, "mainland", "non_mainland"))
+        ct = pd.crosstab(sub[qid], sub.group).reindex(ordering).fillna(0).astype(int)
+        # Ensure both group columns exist
+        for g in ["non_mainland", "mainland"]:
+            if g not in ct.columns:
+                ct[g] = 0
+        ct = ct[["non_mainland", "mainland"]]
+
+        result = {
+            "kind": kind,
+            "n_non_mainland": int(ct["non_mainland"].sum()),
+            "n_mainland": int(ct["mainland"].sum()),
+            "crosstab": ct.astype(int).to_dict(orient="index"),
+        }
+
+        # Overall Fisher (for 2xK) / chi-square
+        table = ct.values
+        try:
+            _, p_fisher = stats.fisher_exact(table) if table.shape == (2, 2) else (None, None)
+        except Exception:
+            p_fisher = None
+        try:
+            chi2, p_chi2, _, _ = stats.chi2_contingency(table)
+            result["chi2"] = round(float(chi2), 3)
+            result["chi2_p"] = round(float(p_chi2), 4)
+        except (ValueError, stats._stats_py.LinAlgError):
+            result["chi2"] = None
+            result["chi2_p"] = None
+        if p_fisher is not None:
+            result["fisher_p"] = round(float(p_fisher), 4)
+
+        # Ordinal test + effect size if ordinal
+        if kind == "ordinal":
+            code_map = {v: i + 1 for i, v in enumerate(ordering)}
+            codes = sub[qid].map(code_map).astype(float)
+            nm = codes[sub.group == "non_mainland"].values
+            mn = codes[sub.group == "mainland"].values
+            try:
+                u, p_mw = stats.mannwhitneyu(nm, mn, alternative="two-sided")
+                result["mannwhitney_p"] = round(float(p_mw), 4)
+                result["mean_code_non_mainland"] = round(float(nm.mean()), 3)
+                result["mean_code_mainland"] = round(float(mn.mean()), 3)
+                result["mean_code_diff"] = round(float(nm.mean() - mn.mean()), 3)
+                result["cliffs_delta"] = round(cliffs_delta(nm, mn), 3)
+            except ValueError:
+                pass
+
+        out[qid] = result
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Pooled Likert summary (for back-compat with plots/report)
 # ---------------------------------------------------------------------------
 def likert_summary(agg: pd.DataFrame) -> pd.DataFrame:
@@ -367,6 +439,7 @@ def main() -> None:
     desc_by_group = gpa_descriptive_by_group(rowlevel)
     gpa_joint = gpa_joint_tests(rowlevel)
     likert_gr = likert_by_group(rowlevel)
+    categoricals = categorical_by_group(rowlevel)
 
     likert_df = likert_summary(agg)
     likert_df.to_csv(DATA / "likert_summary.csv", index=False)
@@ -382,6 +455,7 @@ def main() -> None:
         "gpa_goodness_of_fit": gof,
         "gpa_joint_tests": gpa_joint,
         "likert_by_group": likert_gr,
+        "categorical_by_group": categoricals,
         "interview_theme_tests": theme_tests,
         "interview_theme_burden": burden,
     }
@@ -424,6 +498,13 @@ def main() -> None:
 
     print(f"\nInterview theme burden: intl={burden['intl_mean_burden']}, "
           f"mnl={burden['mnl_mean_burden']}, perm p={burden['perm_p']}")
+
+    print(f"\nCategorical variables by group:")
+    for qid, res in categoricals.items():
+        ptxt = f"chi2 p={res.get('chi2_p')}" if res.get("chi2_p") is not None else ""
+        if "mannwhitney_p" in res:
+            ptxt += f", MW p={res['mannwhitney_p']}, delta={res.get('cliffs_delta')}"
+        print(f"  {qid:<20s} nm_n={res['n_non_mainland']}, mn_n={res['n_mainland']}  {ptxt}")
 
     print(f"\nWrote: {DATA / 'likert_summary.csv'}")
     print(f"Wrote: {DATA / 'likert_by_group.csv'}")
