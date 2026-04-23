@@ -9,7 +9,9 @@ the aggregated output.
 Outputs:
   data/survey_rowlevel.csv   -- 57 rows, one per respondent, canonical columns
   data/survey_aggregated.csv -- long format (question_id, option, count, pct)
-  data/interview_themes.csv  -- 21 interview respondents x 14 binary themes
+  data/interview_themes.csv  -- 30 interview respondents x 14 binary themes
+                              (21 from the first coding pass + 9 added from
+                              the two additional bulk-summary transcripts)
 """
 
 from __future__ import annotations
@@ -192,6 +194,31 @@ def build_interview_themes() -> pd.DataFrame:
             1, 0, 1, 0, 0, 1, 1, 0, 0,   1, 1, 1, 0, 1),
         ("tw_ug3_male", "hkmt",
             1, 0, 1, 0, 1, 1, 0, 0, 1,   0, 0, 0, 0, 0),
+        # --- Additional interviews coded from the two bulk-summary sources -----
+        # These were conducted as part of the same data-collection effort but
+        # had not been theme-coded in the first pass. Sources:
+        #   transcript_bullet_summary_anon.pdf  (R1 – R4, 4 respondents)
+        #   transcription- bullet_point_summary.docx  (R1 – R5, 5 respondents)
+        # Theme coding follows the same conservative "1 only when explicitly
+        # raised" rule used for the original 21 rows.
+        ("hkmt_hk_yr2_ai", "hkmt",
+            1, 0, 1, 0, 1, 0, 0, 0, 0,   0, 0, 0, 0, 0),
+        ("intl_my_yr2_ds", "international",
+            1, 1, 1, 1, 1, 1, 0, 0, 1,   1, 0, 0, 0, 1),
+        ("intl_in_yr2_ai", "international",
+            1, 0, 1, 1, 1, 1, 0, 1, 1,   1, 0, 0, 1, 1),
+        ("cn_yr2_ai_male", "mainland",
+            1, 0, 1, 0, 0, 1, 1, 0, 0,   1, 0, 0, 0, 1),
+        ("intl_my_yr2_smmg", "international",
+            1, 1, 1, 1, 1, 1, 0, 1, 1,   1, 0, 0, 1, 1),
+        ("intl_kz_yr1_ai_b", "international",
+            1, 1, 1, 0, 1, 0, 0, 0, 0,   0, 0, 0, 0, 0),
+        ("intl_kg_yr1_ds", "international",
+            1, 1, 1, 0, 0, 0, 0, 1, 1,   0, 1, 0, 0, 1),
+        ("intl_kz_yr1_undeclared", "international",
+            1, 1, 1, 0, 1, 1, 0, 1, 1,   0, 1, 0, 0, 1),
+        ("intl_kz_yr1_ds", "international",
+            1, 1, 1, 1, 1, 1, 0, 1, 1,   0, 1, 1, 1, 1),
     ]
     cols = [
         "interview_id", "group",

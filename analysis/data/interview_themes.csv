@@ -20,3 +20,12 @@ cn_ug3_female_b,mainland,1,0,1,0,0,1,0,0,0,0,0,0,0,0
 cn_ug3_female_c,mainland,1,0,1,0,1,1,0,0,0,0,0,0,0,0
 cn_younger_yr1,mainland,1,0,1,0,0,1,1,0,0,1,1,1,0,1
 tw_ug3_male,hkmt,1,0,1,0,1,1,0,0,1,0,0,0,0,0
+hkmt_hk_yr2_ai,hkmt,1,0,1,0,1,0,0,0,0,0,0,0,0,0
+intl_my_yr2_ds,international,1,1,1,1,1,1,0,0,1,1,0,0,0,1
+intl_in_yr2_ai,international,1,0,1,1,1,1,0,1,1,1,0,0,1,1
+cn_yr2_ai_male,mainland,1,0,1,0,0,1,1,0,0,1,0,0,0,1
+intl_my_yr2_smmg,international,1,1,1,1,1,1,0,1,1,1,0,0,1,1
+intl_kz_yr1_ai_b,international,1,1,1,0,1,0,0,0,0,0,0,0,0,0
+intl_kg_yr1_ds,international,1,1,1,0,0,0,0,1,1,0,1,0,0,1
+intl_kz_yr1_undeclared,international,1,1,1,0,1,1,0,1,1,0,1,0,0,1
+intl_kz_yr1_ds,international,1,1,1,1,1,1,0,1,1,0,1,1,1,1

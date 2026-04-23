@@ -73,8 +73,10 @@ def main() -> None:
                 f"questionnaire, loaded from the xlsx row-level exports. Status "
                 f"breakdown: {intl_n} international, {mnl_n} domestic Chinese, "
                 f"{hkmt_n} HK/Macau/Taiwan.")
-    body.append("- 21 coded interview transcripts spanning international students "
-                "(Macau, Kazakhstan, Indonesia, Italy) and Chinese mainland / Taiwanese peers.")
+    n_interviews = len(pd.read_csv(DATA / "interview_themes.csv"))
+    body.append(f"- {n_interviews} coded interview transcripts spanning international students "
+                "(Macau, Kazakhstan, Kyrgyzstan, Indonesia, Italy, India, Malaysia), "
+                "Chinese mainland, Hong Kong, and Taiwanese peers.")
     body.append("")
     body.append("**Note on `gender`, `year`, `social_circle`.** These three questions were "
                 "only present in the later batch (n = 43), so they are reported on that "
@@ -319,7 +321,7 @@ def main() -> None:
     body.append("")
 
     # -------- 5. Interview themes --------------------------------------
-    body.append("## 5. Interview theme analysis (n = 21, Fisher exact + BH correction)")
+    body.append(f"## 5. Interview theme analysis (n = {n_interviews}, Fisher exact + BH correction)")
     body.append("")
     body.append(f"Interviews were coded for {n_themes} binary themes. Prevalence by group:")
     body.append("")

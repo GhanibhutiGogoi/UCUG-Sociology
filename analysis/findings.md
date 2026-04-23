@@ -4,7 +4,7 @@
 
 **Data sources.**
 - Survey (n = 57): pooled across two export batches of the same questionnaire, loaded from the xlsx row-level exports. Status breakdown: 13 international, 37 domestic Chinese, 7 HK/Macau/Taiwan.
-- 21 coded interview transcripts spanning international students (Macau, Kazakhstan, Indonesia, Italy) and Chinese mainland / Taiwanese peers.
+- 30 coded interview transcripts spanning international students (Macau, Kazakhstan, Kyrgyzstan, Indonesia, Italy, India, Malaysia), Chinese mainland, Hong Kong, and Taiwanese peers.
 
 **Note on `gender`, `year`, `social_circle`.** These three questions were only present in the later batch (n = 43), so they are reported on that subset. Every other item uses the full pooled n = 57.
 
@@ -148,35 +148,35 @@ Gender composition also does not differ significantly (chi^2 p = 0.302).
 
 _See `figures/05_social_circle_by_group.png` and `figures/13_categoricals_by_group.png`._
 
-## 5. Interview theme analysis (n = 21, Fisher exact + BH correction)
+## 5. Interview theme analysis (n = 30, Fisher exact + BH correction)
 
 Interviews were coded for 14 binary themes. Prevalence by group:
 
 | theme                       |   intl_pct |   mnl_pct |   diff_pct |   fisher_p |   fisher_p_bh |
 |:----------------------------|-----------:|----------:|-----------:|-----------:|--------------:|
-| ucug_easier_than_ufug       |      0.909 |     0     |      0.909 |     0.0001 |        0.0017 |
-| mandarin_dominance          |      0.818 |     0     |      0.818 |     0.0003 |        0.0023 |
-| social_affects_grades       |      0.727 |     0     |      0.727 |     0.0014 |        0.0064 |
-| excluded_from_wechat        |      0.636 |     0     |      0.636 |     0.0047 |        0.0165 |
-| clubs_english_only          |      0.455 |     0.111 |      0.343 |     0.1571 |        0.4399 |
-| chinese_peer_introvert      |      0.364 |     0.111 |      0.253 |     0.3189 |        0.6378 |
-| chinese_peers_avoid_english |      0.364 |     0.111 |      0.253 |     0.3189 |        0.6378 |
-| stays_with_own_group        |      1     |     0.889 |      0.111 |     0.45   |        0.7875 |
-| non_gaokao_prep_gap         |      0.273 |     0.111 |      0.162 |     0.5913 |        0.8279 |
-| wants_structured_programs   |      0.273 |     0.111 |      0.162 |     0.5913 |        0.8279 |
-| low_belonging               |      0.636 |     0.444 |      0.192 |     0.6534 |        0.8316 |
-| language_barrier            |      0.909 |     1     |     -0.091 |     1      |        1      |
-| uni_insufficient            |      0.818 |     0.889 |     -0.071 |     1      |        1      |
-| intl_comms_chinese_default  |      0.091 |     0.111 |     -0.02  |     1      |        1      |
+| ucug_easier_than_ufug       |      0.889 |       0   |      0.889 |     0      |        0.0001 |
+| mandarin_dominance          |      0.778 |       0   |      0.778 |     0.0002 |        0.0007 |
+| social_affects_grades       |      0.778 |       0   |      0.778 |     0.0002 |        0.0007 |
+| excluded_from_wechat        |      0.611 |       0   |      0.611 |     0.0016 |        0.0054 |
+| low_belonging               |      0.722 |       0.4 |      0.322 |     0.1245 |        0.3487 |
+| clubs_english_only          |      0.444 |       0.2 |      0.244 |     0.2474 |        0.4329 |
+| chinese_peers_avoid_english |      0.389 |       0.1 |      0.289 |     0.1937 |        0.4329 |
+| wants_structured_programs   |      0.5   |       0.2 |      0.3   |     0.2264 |        0.4329 |
+| stays_with_own_group        |      1     |       0.9 |      0.1   |     0.3571 |        0.5556 |
+| uni_insufficient            |      0.778 |       0.9 |     -0.122 |     0.6264 |        0.7308 |
+| non_gaokao_prep_gap         |      0.222 |       0.1 |      0.122 |     0.6264 |        0.7308 |
+| intl_comms_chinese_default  |      0.222 |       0.1 |      0.122 |     0.6264 |        0.7308 |
+| language_barrier            |      0.944 |       1   |     -0.056 |     1      |        1      |
+| chinese_peer_introvert      |      0.222 |       0.2 |      0.022 |     1      |        1      |
 
 **Significantly different themes (BH-adjusted p < 0.05):**
 
-- *ucug easier than ufug*: 90.9% of internationals vs 0.0% of mainland students (Fisher p = 0.0001, BH p = 0.0017).
-- *mandarin dominance*: 81.8% of internationals vs 0.0% of mainland students (Fisher p = 0.0003, BH p = 0.0023).
-- *social affects grades*: 72.7% of internationals vs 0.0% of mainland students (Fisher p = 0.0014, BH p = 0.0064).
-- *excluded from wechat*: 63.6% of internationals vs 0.0% of mainland students (Fisher p = 0.0047, BH p = 0.0165).
+- *ucug easier than ufug*: 88.9% of internationals vs 0.0% of mainland students (Fisher p = 0.0000, BH p = 0.0001).
+- *mandarin dominance*: 77.8% of internationals vs 0.0% of mainland students (Fisher p = 0.0002, BH p = 0.0007).
+- *social affects grades*: 77.8% of internationals vs 0.0% of mainland students (Fisher p = 0.0002, BH p = 0.0007).
+- *excluded from wechat*: 61.1% of internationals vs 0.0% of mainland students (Fisher p = 0.0016, BH p = 0.0054).
 
-**Theme burden** (number of themes a respondent reports, out of 14): international = 8.273 on average, mainland = 3.889. Permutation test on the difference: p = 0.0030 (10000 iterations).
+**Theme burden** (number of themes a respondent reports, out of 14): international = 8.5 on average, mainland = 4.1. Permutation test on the difference: p = 0.0002 (10000 iterations).
 
 _See `figures/07_interview_theme_prevalence.png`, `figures/08_theme_burden.png`, and `figures/12_interview_opinion_differences.png`._
 
@@ -186,11 +186,11 @@ A second reading of the long docx transcripts surfaced five additional recurring
 
 | theme                       |   intl_pct |   mnl_pct |   diff_pct |   fisher_p |   fisher_p_bh |
 |:----------------------------|-----------:|----------:|-----------:|-----------:|--------------:|
-| clubs_english_only          |      0.455 |     0.111 |      0.343 |     0.1571 |        0.4399 |
-| chinese_peers_avoid_english |      0.364 |     0.111 |      0.253 |     0.3189 |        0.6378 |
-| non_gaokao_prep_gap         |      0.273 |     0.111 |      0.162 |     0.5913 |        0.8279 |
-| wants_structured_programs   |      0.273 |     0.111 |      0.162 |     0.5913 |        0.8279 |
-| intl_comms_chinese_default  |      0.091 |     0.111 |     -0.02  |     1      |        1      |
+| wants_structured_programs   |      0.5   |       0.2 |      0.3   |     0.2264 |        0.4329 |
+| chinese_peers_avoid_english |      0.389 |       0.1 |      0.289 |     0.1937 |        0.4329 |
+| clubs_english_only          |      0.444 |       0.2 |      0.244 |     0.2474 |        0.4329 |
+| non_gaokao_prep_gap         |      0.222 |       0.1 |      0.122 |     0.6264 |        0.7308 |
+| intl_comms_chinese_default  |      0.222 |       0.1 |      0.122 |     0.6264 |        0.7308 |
 
 _See `figures/10_new_interview_themes.png`._
 
@@ -254,7 +254,7 @@ _See `figures/15_q23_sentiment_and_keywords.png` and `data/q23_sentiment.csv` fo
 2. **Non-mainland students have a lower mean GPA than mainland students** -- 3.25 vs 3.44 -- but the survey at n = 57 does not give significance at alpha = 0.05 (Mann-Whitney two-sided p = 0.12, Cliff's delta -0.222). The HK/Macau/Taiwan sub-group specifically has the lowest mean (3.07, n = 7).
 3. **The two clearest social-integration gaps between groups are `interact_chinese` and `excluded_study_group`** -- non-mainland students interact less with local Chinese peers and report more study-group exclusion. Both items show large mean differences (|Cliff's delta| > 0.37) and raw p < 0.02, even though BH correction across 13 items brings them just above the alpha = 0.05 threshold.
 4. **Interview evidence is unambiguous.** 4 themes separate international and mainland interview respondents with BH-adjusted p < 0.05: ucug easier than ufug, mandarin dominance, social affects grades, excluded from wechat. Mainland respondents essentially never report these.
-5. **Theme burden** permutation test (p = 0.0030) shows international interviewees report roughly twice as many structural friction themes as mainland students -- 8.273 vs 3.889 on a 0-14 scale.
+5. **Theme burden** permutation test (p = 0.0002) shows international interviewees report roughly twice as many structural friction themes as mainland students -- 8.5 vs 4.1 on a 0-14 scale.
 
 ## 8. Recommendations for follow-up data collection
 
