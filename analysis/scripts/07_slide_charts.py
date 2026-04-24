@@ -548,28 +548,211 @@ def chart_11_aware_services(d):
 
 
 # ---------------------------------------------------------------------------
-# Slide 12 — PCA scatter
+# Slide 12 — PC1 loadings + PC1 distribution by group (two-panel)
 # ---------------------------------------------------------------------------
+# Pretty labels for the 14 Likert items. A trailing " (rev.)" flags items
+# that were reverse-coded before PCA so that high = better integration.
+PRETTY = {
+    "belong":                "Feel I belong at HKUST(GZ)",
+    "social_motivation":     "Social life motivates me (rev.)",
+    "social_grades":         "Social life helps my grades (rev.)",
+    "excluded_study_group":  "Not excluded from study groups (rev.)",
+    "language_hard":         "Language is not hard (rev.)",
+    "class_confidence":      "Confident speaking in class",
+    "meaningful_friendships": "Have meaningful friendships",
+    "interact_chinese":      "Interact with Chinese peers",
+    "confident_succeed":     "Confident I will succeed",
+    "valued_in_groups":      "Feel valued in groups",
+    "comfort_init":          "Comfortable initiating contact",
+    "uni_enough":            "University does enough for integration",
+    "stay_in_groups":        "Stay within my own group (rev.)",
+    "aware_services":        "Aware of int'l-student services",
+}
+
+
 def chart_12_pca(d):
     pca = d["results"]["likert_pca"]
     var = pca["explained_variance_ratio"]
     scores = pd.DataFrame(pca["scores"])
+    loadings = pd.DataFrame(pca["loadings"]).T  # rows = items, cols = PC1..PC3
 
-    fig, ax = plt.subplots(figsize=(10, 7))
+    # ---- sort items by PC1 loading (descending so top bar = strongest)
+    load = loadings[["PC1"]].copy()
+    load["label"] = [PRETTY.get(i, i) for i in load.index]
+    load = load.sort_values("PC1", ascending=True)  # matplotlib barh plots bottom-up
+
+    fig, (ax_l, ax_r) = plt.subplots(
+        1, 2, figsize=(15, 7),
+        gridspec_kw={"width_ratios": [1.15, 1.0], "wspace": 0.35},
+    )
+
+    # =======================================================================
+    # LEFT: horizontal bar chart of PC1 loadings
+    # =======================================================================
+    bar_colors = [ACCENT_HL if v > 0 else "#9AA0A6" for v in load["PC1"]]
+    ax_l.barh(load["label"], load["PC1"], color=bar_colors,
+              edgecolor="black", linewidth=0.5)
+    ax_l.axvline(0, color="black", lw=0.8)
+    ax_l.set_xlabel("Loading on PC1  (how strongly each item moves with the integration factor)")
+    ax_l.set_title(
+        f"PC1 = 'general integration'  ·  {var[0]*100:.1f}% of variance\n"
+        "All integration items load in the same direction",
+        pad=12, fontsize=14,
+    )
+    ax_l.set_xlim(-0.1, 0.5)
+    # numeric labels at the end of each bar
+    for y, v in enumerate(load["PC1"]):
+        ax_l.text(v + (0.012 if v >= 0 else -0.012), y,
+                  f"{v:+.2f}",
+                  va="center",
+                  ha="left" if v >= 0 else "right",
+                  fontsize=10, color=GRAY)
+    clean_axes(ax_l)
+
+    # =======================================================================
+    # RIGHT: PC1 score distribution by group (strip + box + group-mean lines)
+    # =======================================================================
     palette = {"mainland": ACCENT_MN, "non_mainland": ACCENT_NM}
-    for grp, col in palette.items():
+    order = ["non_mainland", "mainland"]  # non-mainland on top for reading order
+    y_pos = {g: i for i, g in enumerate(order)}
+
+    rng = np.random.default_rng(0)
+    for grp in order:
         sub = scores[scores.group == grp]
-        ax.scatter(sub.PC1, sub.PC2, s=90, alpha=0.75, color=col,
-                   edgecolor="black", linewidth=0.6,
-                   label=f"{grp.replace('_', '-')}  (n = {len(sub)})")
-    ax.axhline(0, color="gray", lw=0.8, ls=":")
-    ax.axvline(0, color="gray", lw=0.8, ls=":")
-    ax.set_xlabel(f"PC1  —  'general integration'   ({var[0]*100:.1f}% of variance)")
-    ax.set_ylabel(f"PC2   ({var[1]*100:.1f}% of variance)")
-    ax.set_title("Respondents on PC1 × PC2 of the 14 Likert items", pad=12)
-    ax.legend(loc="best")
-    clean_axes(ax)
+        jitter = rng.uniform(-0.18, 0.18, size=len(sub))
+        ax_r.scatter(
+            sub.PC1, np.full(len(sub), y_pos[grp]) + jitter,
+            s=85, alpha=0.75, color=palette[grp],
+            edgecolor="black", linewidth=0.5,
+            zorder=3,
+        )
+        # group mean marker
+        m = sub.PC1.mean()
+        ax_r.plot([m, m], [y_pos[grp] - 0.32, y_pos[grp] + 0.32],
+                  color=palette[grp], lw=3, zorder=4)
+        ax_r.text(m, y_pos[grp] + 0.42,
+                  f"mean = {m:+.2f}",
+                  ha="center", va="bottom", fontsize=11,
+                  color=palette[grp], fontweight="bold")
+
+    # gap annotation
+    mn_mean = scores[scores.group == "mainland"].PC1.mean()
+    nm_mean = scores[scores.group == "non_mainland"].PC1.mean()
+    gap = mn_mean - nm_mean
+    ax_r.annotate(
+        "", xy=(mn_mean, -0.75), xytext=(nm_mean, -0.75),
+        arrowprops=dict(arrowstyle="<->", color=GRAY, lw=1.5),
+    )
+    ax_r.text((mn_mean + nm_mean) / 2, -0.95,
+              f"gap = {gap:+.2f}  (~0.9 SD on the integration score)",
+              ha="center", va="top", fontsize=11, color=GRAY,
+              fontweight="bold")
+
+    ax_r.axvline(0, color="gray", lw=0.8, ls=":")
+    ax_r.set_yticks(list(y_pos.values()))
+    ax_r.set_yticklabels([
+        f"non-mainland\n(n = {(scores.group == 'non_mainland').sum()})",
+        f"mainland\n(n = {(scores.group == 'mainland').sum()})",
+    ])
+    ax_r.set_ylim(-1.2, 1.6)
+    ax_r.set_xlabel("PC1  —  integration score  (higher = more integrated)")
+    ax_r.set_title(
+        "Non-mainland respondents sit lower on PC1\n"
+        "The one-factor compression makes the group gap visible",
+        pad=12, fontsize=14,
+    )
+    clean_axes(ax_r)
+
     save(fig, "slide_12_pca")
+
+
+# ---------------------------------------------------------------------------
+# Slide 12b — PC1 vs GPA: does the integration score predict grades?
+# ---------------------------------------------------------------------------
+GPA_MIDPOINT = {
+    "Below 2.3":  2.10,
+    "2.3-2.7":    2.50,
+    "2.7-3.0":    2.85,
+    "3.3-3.7":    3.35,   # this is the merged [3.0, 3.7) bin from slide 6
+    "Above 3.7":  3.85,
+}
+
+
+def chart_12b_pca_gpa(d):
+    pca = d["results"]["likert_pca"]
+    scores = pd.DataFrame(pca["scores"])
+    rl = d["rowlevel"].copy()
+
+    # Join PC1 scores back to rowlevel via the 'index' field
+    rl["row_index"] = rl.index
+    merged = scores.merge(
+        rl[["row_index", "gpa"]], left_on="index", right_on="row_index", how="left"
+    )
+    merged["gpa_mid"] = merged["gpa"].map(GPA_MIDPOINT)
+    merged = merged.dropna(subset=["gpa_mid"])
+
+    # Stats
+    rho, p_rho = stats.spearmanr(merged["PC1"], merged["gpa_mid"])
+    slope, intercept, r, p_lin, _ = stats.linregress(merged["PC1"], merged["gpa_mid"])
+
+    fig, ax = plt.subplots(figsize=(11, 7))
+    palette = {"mainland": ACCENT_MN, "non_mainland": ACCENT_NM}
+
+    rng = np.random.default_rng(1)
+    for grp, col in palette.items():
+        sub = merged[merged.group == grp]
+        # Jitter the GPA dimension since it's binned; PC1 is continuous
+        y_jit = sub["gpa_mid"] + rng.uniform(-0.06, 0.06, size=len(sub))
+        ax.scatter(
+            sub["PC1"], y_jit, s=95, alpha=0.75, color=col,
+            edgecolor="black", linewidth=0.6,
+            label=f"{grp.replace('_', '-')}  (n = {len(sub)})",
+            zorder=3,
+        )
+
+    # Regression line across all respondents
+    x_line = np.linspace(merged["PC1"].min() - 0.3, merged["PC1"].max() + 0.3, 100)
+    y_line = slope * x_line + intercept
+    ax.plot(x_line, y_line, color=ACCENT_HL, lw=2.5, zorder=2,
+            label=f"OLS fit:  GPA = {slope:+.3f} · PC1 + {intercept:.2f}")
+
+    # Y-axis ticks at actual bin midpoints so the binning is visible
+    tick_vals = sorted(set(GPA_MIDPOINT.values()))
+    tick_labels = [k for k, v in sorted(GPA_MIDPOINT.items(), key=lambda kv: kv[1])]
+    # Relabel the merged bin so it reads honestly
+    tick_labels = [
+        "3.0-3.7  (merged bin)" if lbl == "3.3-3.7" else lbl
+        for lbl in tick_labels
+    ]
+    ax.set_yticks(tick_vals)
+    ax.set_yticklabels(tick_labels)
+    for t in tick_vals:
+        ax.axhline(t, color="gray", lw=0.4, ls=":", alpha=0.5, zorder=1)
+
+    ax.axvline(0, color="gray", lw=0.6, ls=":")
+    ax.set_xlabel("PC1  —  integration score  (higher = more integrated)")
+    ax.set_ylabel("Self-reported GPA  (bin midpoint)")
+
+    # Stats annotation — top-left
+    stats_text = (
+        f"Spearman ρ = {rho:+.2f}   p = {p_rho:.3f}\n"
+        f"Pearson r  = {r:+.2f}   p = {p_lin:.3f}\n"
+        f"n = {len(merged)}"
+    )
+    ax.text(
+        0.02, 0.98, stats_text, transform=ax.transAxes,
+        ha="left", va="top", fontsize=12,
+        bbox=dict(facecolor="white", edgecolor=GRAY, lw=0.8, boxstyle="round,pad=0.4"),
+    )
+
+    ax.set_title(
+        "Integration score vs GPA\n"
+        "More-integrated respondents report higher grades",
+        pad=12, fontsize=15,
+    )
+    ax.legend(loc="lower right", framealpha=0.95)
+    clean_axes(ax)
+    save(fig, "slide_12b_pca_gpa")
 
 
 # ---------------------------------------------------------------------------
@@ -636,6 +819,7 @@ def main():
     chart_10_keywords(d)
     chart_11_aware_services(d)
     chart_12_pca(d)
+    chart_12b_pca_gpa(d)
     chart_13_headline(d)
     print(f"Done. Output dir: {OUT}")
 
